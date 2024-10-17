@@ -1,0 +1,918 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script src="/windster/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=windster/livereload" data-no-instant
+        defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stoic CRM">
+    <meta name="author" content="Themesberg">
+    <meta name="generator" content="Hugo 0.134.3">
+
+    <title>Employee | STOIC HRMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Resets and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #1d82f5;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #ea4c89;
+            --red: #D30000;
+            --orange: #fd7e14;
+            --yellow: #FCBD01;
+            --green: #28a745;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: #1d82f5;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #FCBD01;
+            --danger: #D30000;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 14px;
+            color: #28313c;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: inline-flex;
+            margin-top: 0.5rem;
+            margin-left: 0;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            margin-right: 8px;
+            background-color: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn i, .btn svg {
+            margin-right: 6px;
+        }
+
+        /* Tooltip styling */
+        [data-toggle="tooltip"] {
+            position: relative;
+        }
+
+        [data-toggle="tooltip"]::before {
+            content: attr(data-original-title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: none;
+        }
+
+        [data-toggle="tooltip"]:hover::before {
+            display: block;
+        }
+
+        /* Icon styling */
+        .side-icon {
+            font-size: 16px;
+        }
+
+        /* Additional media queries for responsiveness */
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                margin-top: 1rem;
+            }
+
+            .btn {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+        }
+       
+        /* Basic Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* Navbar left */
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title h2 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #343a40;
+            margin-right: 10px;
+        }
+
+        .page-title a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+
+        .page-title a:hover {
+            text-decoration: underline;
+        }
+
+        .text-truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Navbar right */
+        .page-header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .page-header-right ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .page-header-right ul li {
+            margin-left: 20px;
+        }
+
+        .header-icon-box {
+            color: #343a40;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .header-icon-box:hover {
+            color: #1d82f5;
+        }
+
+        /* Tooltip */
+        [data-toggle="tooltip"] {
+            position: relative;
+        }
+
+        [data-toggle="tooltip"]::before {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #343a40;
+            color: #fff;
+            padding: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: none;
+        }
+
+        [data-toggle="tooltip"]:hover::before {
+            display: block;
+        }
+
+        /* Timer clock */
+        #timer-clock {
+            margin-right: 20px;
+        }
+
+        /* Search and Sticky Notes */
+        .open-search svg,
+        .openRightModal svg {
+            cursor: pointer;
+        }
+
+        /* Add Button Dropdown */
+        .add_box .dropdown-toggle {
+            position: relative;
+        }
+
+        .add_box .dropdown-menu {
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            color: #343a40;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown-item svg {
+            margin-right: 8px;
+        }
+
+        /* Notifications */
+        .notification_box .badge {
+            background-color: #1d82f5;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .notification-dropdown {
+            min-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Logout */
+        .logout_box a {
+            color: #343a40;
+            text-decoration: none;
+        }
+
+        .logout_box a:hover {
+            color: #d30000;
+        }
+
+        /* Mobile menu collapse (for smaller screens) */
+        .menu-collapse {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-collapse .mc-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+        }
+
+        .mcw-line {
+            height: 3px;
+            background-color: #343a40;
+        }
+
+        /* Breakpoints for responsiveness */
+        @media (max-width: 768px) {
+            .menu-collapse {
+                display: block;
+            }
+
+            .d-none.d-lg-flex {
+                display: none !important;
+            }
+        }
+        
+    </style>
+
+</head>
+
+<body class="bg-gray-50">
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+    <!-- ===================================================================================================== -->
+    <!-- ===================================    Navbar   ===================================================== -->
+    <!-- ===================================================================================================== -->
+
+
+
+    <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <button id="toggleSidebarMobile" aria-expanded="false" aria-controls="mobileMenu"
+                        class="lg:hidden text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
+                        <svg id="toggleSidebarMobileHamburger" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <a href="http://localhost:1313/windster/" class="text-xl font-bold flex items-center lg:ml-2.5">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipOhQ9UlVMaznORos28Gn5prYVrsnbcYdxYu5ldw=s1360-w1360-h1020"
+                            class="h-10 mr-4 rounded-full border-black border-4 bg-black" alt="Stoic Logo">
+                        <span class="self-center whitespace-nowrap">STOIC HRMS</span>
+                    </a>
+                     <!-- NAVBAR RIGHT -->
+        <div class="page-header-right float-right d-flex ">
+            <span id="timer-clock"></span>
+            <ul>
+                <!-- SEARCH -->
+                <li data-toggle="tooltip" data-title="Search">
+                    <a href="javascript:;" class="d-block header-icon-box open-search">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+
+                <!-- Sticky Note -->
+                <li data-toggle="tooltip" data-title="Sticky Notes">
+                    <a href="https://work.suitewise.in/account/sticky-notes" class="d-block header-icon-box openRightModal">
+                        <i class="fas fa-sticky-note"></i>
+                    </a>
+                </li>
+
+                <!-- ADD -->
+                <li class="add_box">
+                    <a href="#" class="d-block header-icon-box dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                    
+                </li>
+
+                
+
+                <!-- Logout -->
+                <li class="logout_box">
+                    <a href="javascript:;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="fas fa-power-off"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+                </div>
+                <div class="flex items-center">
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                        class="text-white bg-cyan-700 ml-5 h-10 w-10 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+                        type="button">
+                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <div id="dropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="Settings.html"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                            </li>
+                            <li>
+                                <a href="Hrmlogin.html"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                                    out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden flex flex-col space-y-4 pb-4 mt-2 bg-white shadow-lg rounded-lg">
+                <a href="index.html" class="p-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                <a href="Employee.html" class="p-2 text-gray-700 hover:bg-gray-100">Employee</a>
+                <a href="Leaves.html" class="p-2 text-gray-700 hover:bg-gray-100">Leaves</a>
+                <a href="Attendance.html" class="p-2 text-gray-700 hover:bg-gray-100">Attendance</a>
+                <a href="Designation.html" class="p-2 text-gray-700 hover:bg-gray-100">Designation</a>
+                <a href="Settings.html" class="p-2 text-gray-700 hover:bg-gray-100">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ===================================================================================================== -->
+    <!-- ===================================    Sidebar  ===================================================== -->
+    <!-- ===================================================================================================== -->
+
+    <div class="flex overflow-hidden bg-white pt-16">
+
+        <aside id="sidebar"
+            class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+            aria-label="Sidebar">
+            <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+                <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-1 px-3 bg-white divide-y space-y-1">
+                        <ul class="space-y-2 pb-2">
+                            <li>
+                                <form action="#" method="GET" class="lg:hidden">
+                                    <label for="mobile-search" class="sr-only">Search</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <input type="text" name="email" id="mobile-search"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5"
+                                            placeholder="Search">
+                                    </div>
+                                </form>
+                            </li>
+                            <li>
+                                <a href="./index.html"
+                                    class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                    <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                                    </svg>
+                                    <span class="ml-3">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./Employee.html"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clip-rule="evenodd" />
+                                        <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+                                      </svg>
+                                      
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Employee</span>
+
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="./Leaves.html"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                                      </svg>
+                                      
+                                    
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Leaves</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="./Attendance.html"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
+                                      </svg>
+                                      
+                                      
+                                    
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Attendance</span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="./Designation.html"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                                      </svg>
+                                      
+                                    
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Designation</span>
+
+                                </a>
+                            </li>
+
+                            <li>
+                                
+                        </ul>
+                        <div class="space-y-2 pt-2">
+
+                            <a href="./Settings.html"
+                                class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clip-rule="evenodd" />
+                                  </svg>
+                                  
+                                <span class="ml-3 flex-1 whitespace-nowrap">Settings</span>
+                            </a>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+
+
+        <!-- ===================================================================================================== -->
+        <!-- =================================      Clients     ================================================== -->
+        <!-- ===================================================================================================== -->
+
+
+
+        <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
+            <main>
+
+                <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
+                    <div class="mb-1 w-full">
+                        <div class="mb-4">
+                            <nav class="flex mb-5" aria-label="Breadcrumb">
+                                <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                                    <li class="inline-flex items-center">
+                                        <a href="#" class="text-gray-700 hover:text-gray-900 inline-flex items-center">
+                                            <svg class=" mr-2 w-5 h-5 .5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                                </path>
+                                            </svg>
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <a href="#"
+                                                class="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-medium">Attendance</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span class="text-gray-400 ml-1 md:ml-2 text-sm font-medium"
+                                                aria-current="page">List</span>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </nav>
+                          
+    
+      <!-- Filter Bar -->
+      <div class="bg-white shadow mb-4">
+        <div class="container mx-auto flex space-x-4 py-3 px-4">
+          <select class="border rounded px-3 py-2">
+            <option>Employee</option>
+            <option>All</option>
+            <option>Dhanashri Ghadage</option>
+            <option>Arya Tandale</option>
+          </select>
+          <select class="border rounded px-3 py-2">
+            <option>Department</option>
+            <option>All</option>
+            <option>Human Resources</option>
+            <option>Administration</option>
+            <option>Finance</option>
+          </select>
+          <select class="border rounded px-3 py-2">
+            <option>Designation</option>
+            <option>All</option>
+            <option>Software Developer</option>
+            <option>DevOps Engineer</option>
+            <option>Operations Head</option>
+            <option>Sales Head</option>
+
+          </select>
+          <select class="border rounded px-3 py-2">
+            <option>Month</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>Sepetember</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+
+                        
+          </select>
+          <select class="border rounded px-3 py-2">
+            <option>Year</option>
+            <option>2024</option>
+
+            <option>2023</option>
+            <option>2022</option>
+
+            <option>2021</option>
+            <option>2020</option>
+
+          </select>
+        </div>
+      </div>
+
+      <!-- Mark Attendance and Import buttons -->
+      <div class="container mx-auto mb-4 flex justify-between items-center">
+        <div>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded">Mark Attendance</button>
+          <button class="bg-gray-200 px-4 py-2 rounded ml-2">Import</button>
+        </div>
+        <div class="btn-group mt-2 mt-lg-0 mt-md-0 ml-0 ml-lg-3 ml-md-3" role="group">
+            <a href="https://work.suitewise.in/account/attendances" class="btn btn-secondary f-14 btn-active" data-toggle="tooltip" data-original-title="Summary">
+                <i class="side-icon fas fa-list-ul"></i>Summary
+            </a>
+    
+            <a href="https://work.suitewise.in/account/attendances/by-member" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Member">
+                <i class="side-icon fas fa-user"></i>By Member
+            </a>
+    
+            <a href="https://work.suitewise.in/account/attendances/by-hour" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Hour">
+                <i class="side-icon fas fa-clock"></i>By Hour
+            </a>
+    
+            <a href="https://work.suitewise.in/account/attendances/by-map-location" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Location">
+                <i class="side-icon fas fa-map-marked-alt"></i>By Location
+            </a>
+        </div>
+    
+      </div>
+
+      <!-- Attendance Table -->
+     <div class="row" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+    <div class="col-md-12" id="attendance-data" style="width: 100%; padding: 0;">
+        <div class="table-responsive" style="overflow-x: auto;">
+            <table class="table table-bordered mt-3 table-hover" id="example" style="border-collapse: collapse; width: 100%; font-size: 14px; font-family: 'Helvetica Neue'; color: #28313c;">
+                <thead class="thead-light" style="background-color: #f8f9fa;">
+                    <tr style="border: 1px solid #dee2e6;">
+                        <th class="px-1" style="vertical-align: middle; padding: 6px; border: 1px solid #dee2e6;">Employee</th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">1 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">2 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">3 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">4 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th><th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">1 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">5 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">6 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">7 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">8 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">9 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">10 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">11 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">12 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">13 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">14 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">15 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">16 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">17 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">18 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">19 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">20 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">21 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">22 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">23 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">24 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">25 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">26 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">27 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">28 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">29 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Tue</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">30 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+                        <th class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">31 <br><span class="text-dark-grey f-10" style="font-size: 10px; color: #6c757d;">Wed</span></th>
+
+           
+            
+                        <th class="text-right px-2" style="padding: 8px; text-align: right; border: 1px solid #dee2e6;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border: 1px solid #dee2e6;">
+                        <td class="w-30 px-2" style="width: 30%; padding: 8px; border: 1px solid #dee2e6;">
+                            <div class="media align-items-center mw-250" style="display: flex; align-items: center; max-width: 250px;">
+                                <a  class="position-relative">
+                                    <img src="https://work.suitewise.in/user-uploads/avatar/6dc88fddcfd6cd91d24e175b9ae43489.png" class="mr-2 taskEmployeeImg rounded-circle" alt="Charul Jagtap" title="Charul Jagtap" style="margin-right: 10px; border-radius: 50%; width: 40px; height: 40px;">
+                                </a>
+                                <div class="media-body text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <h5 class="mb-0 f-12" style="margin-bottom: 0; font-size: 12px;">
+                                        <a  class="text-darkest-grey" style="color: #343a40;">Charul Jagtap</a>
+                                    </h5>
+                                    <p class="mb-0 f-12 text-dark-grey" style="margin-bottom: 0; font-size: 12px; color: #6c757d;">Director &amp; CEO</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        
+                        
+
+                        <!-- Add other data similarly -->
+                        <td class="pr-2 pl-1 f-11 text-right" style="padding: 8px; text-align: right; border: 1px solid #dee2e6;">10</td>
+                    </tr>
+                    <!-- Add other employee rows similarly -->
+                    <tr style="border: 1px solid #dee2e6;">
+                        <td class="w-30 px-2" style="width: 30%; padding: 8px; border: 1px solid #dee2e6;">
+                            <div class="media align-items-center mw-250" style="display: flex; align-items: center; max-width: 250px;">
+                                <a  class="position-relative">
+                                    <img src="https://work.suitewise.in/user-uploads/avatar/6dc88fddcfd6cd91d24e175b9ae43489.png" class="mr-2 taskEmployeeImg rounded-circle" alt="Charul Jagtap" title="Charul Jagtap" style="margin-right: 10px; border-radius: 50%; width: 40px; height: 40px;">
+                                </a>
+                                <div class="media-body text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <h5 class="mb-0 f-12" style="margin-bottom: 0; font-size: 12px;">
+                                        <a  class="text-darkest-grey" style="color: #343a40;">Charul Jagtap</a>
+                                    </h5>
+                                    <p class="mb-0 f-12 text-dark-grey" style="margin-bottom: 0; font-size: 12px; color: #6c757d;">Director &amp; CEO</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">P</td>
+                        <td class="pr-2 pl-1 f-11" style="padding: 8px; border: 1px solid #dee2e6;">A</td>
+                        
+                        
+
+                        <!-- Add other data similarly -->
+                        <td class="pr-2 pl-1 f-11 text-right" style="padding: 8px; text-align: right; border: 1px solid #dee2e6;">10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    </main>
+ 
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+        document.getElementById('export-btn').addEventListener('click', function () {
+            let table = document.querySelector('table');
+            let rows = Array.from(table.rows);
+            let csv = rows.map(row => {
+                let cells = Array.from(row.cells).map(cell => {
+                    return '"' + cell.innerText.replace(/"/g, '""') + '"';
+                });
+                return cells.join(',');
+            }).join('\n');
+
+            let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'table_data.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- <script src="http://localhost:1313/windster/app.bundle.js"></script> -->
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
