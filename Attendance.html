@@ -310,12 +310,184 @@
                 <div class="page-header-right float-right d-flex justify-right-end">
                     <span id="timer-clock"></span>
                     <ul>
-                        <!-- SEARCH -->
                         <li data-toggle="tooltip" data-title="Search">
-                            <a class="d-block header-icon-box open-search" data-toggle="tooltip" data-original-title="Search">
+                            <a class="d-block header-icon-box open-search" onclick="showSearchModal()" data-toggle="tooltip" data-original-title="Search">
                                 <i class="fas fa-search"></i>
                             </a>
                         </li>
+                        
+                        <!-- Search Modal -->
+                        <div id="searchModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeSearchModal()">&times;</span>
+                                <h2 class="modal-header-title">Search</h2>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="searchType">Search Type:</label>
+                                        <select id="searchType" class="form-control">
+                                            <option>Ticket</option>
+                                            <option>Invoice</option>
+                                            <option>Notice</option>
+                                            <option>Task</option>
+                                            <option>Project</option>
+                                            <option>Estimate</option>
+                                            <option>Employee</option>
+                                            <option>Client</option>
+                                            <option>Lead</option>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                                            <!-- Add other search types as needed -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="searchKeyword">Keyword:</label>
+                                        <input type="text" id="searchKeyword" class="form-control" placeholder="Enter keyword to search">
+                                    </div>
+                                    <div class="modal-actions">
+                                        <button type="submit" class="btn btn-danger">Search</button>
+                                        <button type="button" onclick="closeSearchModal()" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- CSS for Modal Styling -->
+                        <style>
+                            /* Modal Background */
+                            .modal {
+                                display: none;
+                                position: fixed;
+                                z-index: 1;
+                                left: 0;
+                                top: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(0, 0, 0, 0.7);
+                                justify-content: center;
+                                align-items: flex-start;
+                                padding-top: 50px; /* Padding to avoid touching the very top */
+                        
+                            }
+                        
+                            /* Modal Content Styling */
+                            .modal-content {
+                                background-color: #fff;
+                                margin: auto;
+                                padding: 30px;
+                                border-radius: 12px;
+                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                width: 50%;
+                                max-width: 600px;
+                                position: relative;
+                                animation: fadeIn 0.3s ease-in-out;
+                            }
+                        
+                            /* Animation for Modal */
+                            @keyframes fadeIn {
+                                from {
+                                    opacity: 0;
+                                    transform: scale(0.9);
+                                }
+                                to {
+                                    opacity: 1;
+                                    transform: scale(1);
+                                }
+                            }
+                        
+                            /* Close Button */
+                            .close {
+                                position: absolute;
+                                top: 15px;
+                                right: 20px;
+                                color: #aaa;
+                                font-size: 28px;
+                                font-weight: bold;
+                                cursor: pointer;
+                            }
+                        
+                            .close:hover, .close:focus {
+                                color: #555;
+                                text-decoration: none;
+                                cursor: pointer;
+                            }
+                        
+                            /* Modal Header */
+                            .modal-header-title {
+                                margin-bottom: 20px;
+                                font-size: 24px;
+                                font-weight: 500;
+                                color: #333;
+                            }
+                        
+                            /* Form Fields Styling */
+                            .form-group {
+                                margin-bottom: 20px;
+                            }
+                        
+                            .form-group label {
+                                font-weight: 500;
+                                color: #444;
+                            }
+                        
+                            .form-control {
+                                width: 100%;
+                                padding: 10px;
+                                font-size: 14px;
+                                border-radius: 8px;
+                                border: 1px solid #ddd;
+                            }
+                        
+                            /* Modal Actions (Buttons) */
+                            .modal-actions {
+                                display: flex;
+                                justify-content: flex-end;
+                                gap: 15px;
+                            }
+                        
+                            .btn {
+                                padding: 10px 15px;
+                                font-size: 14px;
+                                border-radius: 8px;
+                                border: none;
+                            }
+                        
+                            .btn-danger {
+                                background-color: blue;
+                                color: white;
+                            }
+                        
+                            .btn-secondary {
+                                background-color: #6c757d;
+                                color: white;
+                            }
+                        </style>
+                        
+                        <!-- JavaScript for Modal -->
+                        <script>
+                            // Function to show the modal
+                            function showSearchModal() {
+                                document.getElementById('searchModal').style.display = 'flex';  // Change from 'block' to 'flex' for centering
+                            }
+                        
+                            // Function to close the modal
+                            function closeSearchModal() {
+                                document.getElementById('searchModal').style.display = 'none';
+                            }
+                        
+                            // Close the modal when clicking outside of it
+                            window.onclick = function (event) {
+                                const modal = document.getElementById('searchModal');
+                                if (event.target == modal) {
+                                    modal.style.display = 'none';
+                                }
+                            }
+                        </script>
+
                 
                     <!-- Sticky Note Icon -->
                     <li data-toggle="tooltip" data-title="Sticky Notes" style="display: inline-block; margin-right: 18px;">
@@ -398,6 +570,7 @@
                             }
                         }
                     </script>
+                    <!-- Sticky Notes End -->
 
                     
                     <!-- Notification -->
@@ -685,7 +858,163 @@
       <!-- Mark Attendance and Import buttons -->
       <div class="container mx-auto mb-4 flex justify-between items-center">
         <div>
-          <button class="bg-blue-500 text-white px-4 py-2 rounded">Mark Attendance</button>
+        
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showAttendanceModal()">Mark Attendance</button>
+        
+        <!-- Mark Attendance Modal -->
+        <div id="attendanceModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeAttendanceModal()">&times;</span>
+                <h2 class="text-xl font-bold mb-4">Mark Attendance</h2>
+                <form class="grid grid-cols-2 gap-4">
+                    <!-- Attendance Details Form -->
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Department:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>--</option>
+                            <option>HR</option>
+                            <option>IT</option>
+                            <!-- Add other departments as needed -->
+                        </select>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Employees:</label>
+                        <input type="text" placeholder="Select Employee" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Location:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>SUITEWISE (OPC) PRIVATE LIMITED</option>
+                            <!-- Add other locations if needed -->
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Mark Attendance By:</label>
+                        <div>
+                            <input type="radio" name="attendanceBy" checked> Month
+                            <input type="radio" name="attendanceBy" class="ml-4"> Date
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Year:</label>
+                        <input type="text" value="2024" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Month:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>October</option>
+                            <!-- Add other months if needed -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Clock In:</label>
+                        <input type="time" value="09:30" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Clock Out:</label>
+                        <input type="time" value="18:30" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Working From:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>Office</option>
+                            <option>Home</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Late:</label>
+                        <div>
+                            <input type="radio" name="late" checked> No
+                            <input type="radio" name="late" class="ml-4"> Yes
+                        </div>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Half Day:</label>
+                        <div>
+                            <input type="radio" name="halfDay" checked> No
+                            <input type="radio" name="halfDay" class="ml-4"> Yes
+                        </div>
+                    </div>
+
+                    <div class="col-span-2 flex justify-end gap-4">
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Save</button>
+                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeAttendanceModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- CSS for Modal -->
+        <style>
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            .modal-content {
+                background-color: #fff;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 60%;
+                border-radius: 8px;
+            }
+        
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+        
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        
+            input[type="radio"] {
+                margin-right: 4px;
+            }
+        </style>
+        
+        <!-- JavaScript for Modal -->
+        <script>
+            function showAttendanceModal() {
+                document.getElementById('attendanceModal').style.display = 'block';
+            }
+
+            function closeAttendanceModal() {
+                document.getElementById('attendanceModal').style.display = 'none';
+            }
+
+            // Close modal when clicking outside of it
+            window.onclick = function (event) {
+                const modal = document.getElementById('attendanceModal');
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        </script>
+        <!-- Mark Attendance Button End -->
+
           <button class="bg-gray-200 px-4 py-2 rounded ml-2">Import</button>
         </div>
         <div class="btn-group mt-2 mt-lg-0 mt-md-0 ml-0 ml-lg-3 ml-md-3" role="group">
