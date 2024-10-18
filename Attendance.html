@@ -317,12 +317,88 @@
                             </a>
                         </li>
                 
-                    <!-- Sticky Note -->
+                    <!-- Sticky Note Icon -->
                     <li data-toggle="tooltip" data-title="Sticky Notes" style="display: inline-block; margin-right: 18px;">
-                        <a class="d-block header-icon-box openRightModal" data-toggle="tooltip" data-original-title="Sticky Notes">
+                        <a class="d-block header-icon-box" data-toggle="tooltip" data-original-title="Sticky Notes"
+                            onclick="showStickyNoteModal()">
                             <i class="fas fa-sticky-note"></i>
                         </a>
                     </li>
+                    
+                    <!-- Sticky Notes Modal -->
+                    <div id="stickyNoteModal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeStickyNoteModal()">&times;</span>
+                            <h2>Sticky Notes</h2>
+                            <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."></textarea>
+                            <br>
+                            <button onclick="saveNote()">Save Note</button>
+                        </div>
+                    </div>
+                    
+                    <!-- CSS for Modal -->
+                    <style>
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.5);
+                        }
+                    
+                        .modal-content {
+                            background-color: #fff;
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 50%;
+                            border-radius: 8px;
+                        }
+                    
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+                    
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    </style>
+                    
+                    <!-- JavaScript for Modal -->
+                    <script>
+                        function showStickyNoteModal() {
+                            document.getElementById('stickyNoteModal').style.display = 'block';
+                        }
+
+                        function closeStickyNoteModal() {
+                            document.getElementById('stickyNoteModal').style.display = 'none';
+                        }
+
+                        function saveNote() {
+                            const noteContent = document.getElementById('noteContent').value;
+                            alert('Note Saved: ' + noteContent);
+                            // Here you can add your code to actually save the note (e.g., send it to a server)
+                            closeStickyNoteModal();
+                        }
+
+                        // Close modal when clicking outside of it
+                        window.onclick = function (event) {
+                            const modal = document.getElementById('stickyNoteModal');
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
+                            }
+                        }
+                    </script>
+
                     
                     <!-- Notification -->
                     <div class="notification_box dropdown" style="display: inline-block;">
