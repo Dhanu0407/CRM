@@ -16,13 +16,15 @@
     <title>Employee | STOIC HRMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Resets and Variables */
+       
+        /* Resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        /* Variables */
         :root {
             --blue: #1d82f5;
             --indigo: #6610f2;
@@ -37,29 +39,32 @@
             --white: #fff;
             --gray: #6c757d;
             --gray-dark: #343a40;
-            --primary: #1d82f5;
-            --secondary: #6c757d;
-            --success: #28a745;
-            --info: #17a2b8;
-            --warning: #FCBD01;
-            --danger: #D30000;
+            --primary: var(--blue);
+            --secondary: var(--gray);
+            --success: var(--green);
+            --info: var(--cyan);
+            --warning: var(--yellow);
+            --danger: var(--red);
             --light: #f8f9fa;
-            --dark: #343a40;
+            --dark: var(--gray-dark);
         }
-
+        
+        /* Body Styling */
         body {
-            font-family: "Helvetica Neue", sans-serif;
+            font-family: Arial, "Helvetica Neue", sans-serif;
             font-size: 14px;
             color: #28313c;
+            background-color: var(--light);
             line-height: 1.5;
         }
-
+        
+        /* Buttons */
         .btn-group {
             display: inline-flex;
             margin-top: 0.5rem;
             margin-left: 0;
         }
-
+        
         .btn {
             padding: 8px 16px;
             border: 1px solid var(--gray);
@@ -73,26 +78,23 @@
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
-
-        .btn:hover {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
+        
+        .btn:hover,
         .btn-active {
             background-color: var(--primary);
             border-color: var(--primary);
         }
-
-        .btn i, .btn svg {
+        
+        .btn i, 
+        .btn svg {
             margin-right: 6px;
         }
-
-        /* Tooltip styling */
+        
+        /* Tooltips */
         [data-toggle="tooltip"] {
             position: relative;
         }
-
+        
         [data-toggle="tooltip"]::before {
             content: attr(data-original-title);
             position: absolute;
@@ -107,177 +109,110 @@
             white-space: nowrap;
             display: none;
         }
-
+        
         [data-toggle="tooltip"]:hover::before {
             display: block;
         }
-
-        /* Icon styling */
-        .side-icon {
-            font-size: 16px;
-        }
-
-        /* Additional media queries for responsiveness */
-        @media (max-width: 768px) {
-            .btn-group {
-                flex-direction: column;
-                margin-top: 1rem;
-            }
-
-            .btn {
-                margin-right: 0;
-                margin-bottom: 8px;
-            }
-        }
-       
-        /* Basic Resets */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
+        
+        /* Navbar */
         header {
-            background-color: #fff;
+            background-color: var(--white);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 10px 20px;
-            position: relative;
             z-index: 1000;
         }
-
-        /* Navbar left */
-        .navbar-left {
-            display: flex;
-            align-items: center;
-        }
-
+        
+        .navbar-left,
         .page-title {
             display: flex;
             align-items: center;
         }
-
+        
         .page-title h2 {
             font-size: 18px;
             font-weight: bold;
-            color: #343a40;
+            color: var(--dark);
             margin-right: 10px;
         }
-
+        
         .page-title a {
-            color: #6c757d;
+            color: var(--secondary);
             text-decoration: none;
         }
-
+        
         .page-title a:hover {
             text-decoration: underline;
         }
-
+        
         .text-truncate {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
-        /* Navbar right */
+        
+        /* Navbar Right */
         .page-header-right {
             display: flex;
             align-items: center;
             justify-content: flex-end;
         }
-
+        
         .page-header-right ul {
             display: flex;
             list-style: none;
             align-items: center;
         }
-
+        
         .page-header-right ul li {
             margin-left: 20px;
         }
-
-        .header-icon-box {
-            color: #343a40;
+        
+        .header-icon-box,
+        .logout_box a {
+            color: var(--dark);
             text-decoration: none;
             font-size: 16px;
         }
-
-        .header-icon-box:hover {
-            color: #1d82f5;
+        
+        .header-icon-box:hover,
+        .logout_box a:hover {
+            color: var(--primary);
         }
-
-        /* Tooltip */
-        [data-toggle="tooltip"] {
-            position: relative;
+        
+        .logout_box a:hover {
+            color: var(--danger);
         }
-
-        [data-toggle="tooltip"]::before {
-            content: attr(data-title);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #343a40;
-            color: #fff;
-            padding: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-            display: none;
-        }
-
-        [data-toggle="tooltip"]:hover::before {
-            display: block;
-        }
-
-        /* Timer clock */
-        #timer-clock {
-            margin-right: 20px;
-        }
-
-        /* Search and Sticky Notes */
-        .open-search svg,
-        .openRightModal svg {
-            cursor: pointer;
-        }
-
-        /* Add Button Dropdown */
-        .add_box .dropdown-toggle {
-            position: relative;
-        }
-
+        
+        /* Dropdown Menu */
         .add_box .dropdown-menu {
             position: absolute;
             right: 0;
-            background-color: #fff;
+            background-color: var(--white);
             border: 1px solid #ccc;
             padding: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
+        
         .dropdown-item {
             display: flex;
             align-items: center;
-            color: #343a40;
+            color: var(--dark);
             padding: 5px 10px;
             text-decoration: none;
         }
-
+        
         .dropdown-item:hover {
-            background-color: #f8f9fa;
+            background-color: var(--light);
         }
-
+        
         .dropdown-item svg {
             margin-right: 8px;
         }
-
+        
         /* Notifications */
         .notification_box .badge {
-            background-color: #1d82f5;
-            color: #fff;
+            background-color: var(--primary);
+            color: var(--white);
             font-size: 12px;
             padding: 4px 6px;
             border-radius: 50%;
@@ -285,29 +220,19 @@
             top: 0;
             right: 0;
         }
-
+        
         .notification-dropdown {
             min-width: 300px;
             max-height: 400px;
             overflow-y: auto;
         }
-
-        /* Logout */
-        .logout_box a {
-            color: #343a40;
-            text-decoration: none;
-        }
-
-        .logout_box a:hover {
-            color: #d30000;
-        }
-
-        /* Mobile menu collapse (for smaller screens) */
+        
+        /* Mobile Menu */
         .menu-collapse {
             display: none;
             cursor: pointer;
         }
-
+        
         .menu-collapse .mc-wrap {
             display: flex;
             flex-direction: column;
@@ -315,25 +240,33 @@
             height: 24px;
             width: 30px;
         }
-
+        
         .mcw-line {
             height: 3px;
-            background-color: #343a40;
+            background-color: var(--dark);
         }
-
-        /* Breakpoints for responsiveness */
+        
+        /* Media Queries */
         @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                margin-top: 1rem;
+            }
+        
+            .btn {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+        
             .menu-collapse {
                 display: block;
             }
-
+        
             .d-none.d-lg-flex {
                 display: none !important;
             }
         }
-        
-    </style>
-
+    </style>        
 </head>
 
 <body class="bg-gray-50">
@@ -368,68 +301,48 @@
                         <span class="self-center whitespace-nowrap">STOIC HRMS</span>
                     </a>
                      <!-- NAVBAR RIGHT -->
-        <div class="page-header-right float-right d-flex ">
-            <span id="timer-clock"></span>
-            <ul>
-                <!-- SEARCH -->
-                <li data-toggle="tooltip" data-title="Search">
-                    <a href="javascript:;" class="d-block header-icon-box open-search">
-                        <i class="fas fa-search"></i>
-                    </a>
-                </li>
-
-                <!-- Sticky Note -->
-                <li data-toggle="tooltip" data-title="Sticky Notes">
-                    <a href="https://work.suitewise.in/account/sticky-notes" class="d-block header-icon-box openRightModal">
-                        <i class="fas fa-sticky-note"></i>
-                    </a>
-                </li>
-
-                <!-- ADD -->
-                <li class="add_box">
-                    <a href="#" class="d-block header-icon-box dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                    
-                </li>
-
+                     <h1 ><Attendance</h1> 
+        
+                </div>
                 
-
-                <!-- Logout -->
-                <li class="logout_box">
-                    <a href="javascript:;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <i class="fas fa-power-off"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                    
+                  
+                <div class="page-header-right float-right d-flex justify-right-end ">
+                    <span id="timer-clock"></span>
+                    <ul>
+                        <!-- SEARCH -->
+                        <li data-toggle="tooltip" data-title="Search">
+                            <a href="javascript:;" class="d-block header-icon-box open-search">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </li>
+        
+                        <!-- Sticky Note -->
+                        <li data-toggle="tooltip" data-title="Sticky Notes">
+                            <a href="https://work.suitewise.in/account/sticky-notes" class="d-block header-icon-box openRightModal">
+                                <i class="fas fa-sticky-note"></i>
+                            </a>
+                        </li>
+        
+                        <!-- ADD -->
+                        <li class="add_box">
+                            <a href="#" class="d-block header-icon-box dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                            
+                        </li>
+        
+                        
+        
+                        <!-- Logout -->
+                        <li class="logout_box">
+                            <a href="javascript:;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="flex items-center">
-                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                        class="text-white bg-cyan-700 ml-5 h-10 w-10 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-                        type="button">
-                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <div id="dropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="Settings.html"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="Hrmlogin.html"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                                    out</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Mobile Menu -->
@@ -683,20 +596,20 @@
           <button class="bg-gray-200 px-4 py-2 rounded ml-2">Import</button>
         </div>
         <div class="btn-group mt-2 mt-lg-0 mt-md-0 ml-0 ml-lg-3 ml-md-3" role="group">
-            <a href="https://work.suitewise.in/account/attendances" class="btn btn-secondary f-14 btn-active" data-toggle="tooltip" data-original-title="Summary">
-                <i class="side-icon fas fa-list-ul"></i>Summary
+            <a  class="btn btn-secondary f-14 btn-active" data-toggle="tooltip" data-original-title="Summary">
+                <i class="side-icon fas fa-list-ul"></i>
             </a>
     
-            <a href="https://work.suitewise.in/account/attendances/by-member" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Member">
-                <i class="side-icon fas fa-user"></i>By Member
+            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Member">
+                <i class="side-icon fas fa-user"></i>
             </a>
     
-            <a href="https://work.suitewise.in/account/attendances/by-hour" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Hour">
-                <i class="side-icon fas fa-clock"></i>By Hour
+            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Hour">
+                <i class="side-icon fas fa-clock"></i>
             </a>
     
-            <a href="https://work.suitewise.in/account/attendances/by-map-location" class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Location">
-                <i class="side-icon fas fa-map-marked-alt"></i>By Location
+            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Location">
+                <i class="side-icon fas fa-map-marked-alt"></i>
             </a>
         </div>
     
