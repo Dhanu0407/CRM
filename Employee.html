@@ -13,8 +13,259 @@
     <meta name="generator" content="Hugo 0.134.3">
 
     <title>Employee | STOIC HRMS</title>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+       
+        /* Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Variables */
+        :root {
+            --blue: #1d82f5;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #ea4c89;
+            --red: #D30000;
+            --orange: #fd7e14;
+            --yellow: #FCBD01;
+            --green: #28a745;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: var(--blue);
+            --secondary: var(--gray);
+            --success: var(--green);
+            --info: var(--cyan);
+            --warning: var(--yellow);
+            --danger: var(--red);
+            --light: #f8f9fa;
+            --dark: var(--gray-dark);
+        }
+        
+        /* Body Styling */
+        body {
+            font-family: Arial, "Helvetica Neue", sans-serif;
+            font-size: 14px;
+            color: #28313c;
+            background-color: var(--light);
+            line-height: 1.5;
+        }
+        
+        /* Buttons */
+        .btn-group {
+            display: inline-flex;
+            margin-top: 0.5rem;
+            margin-left: 0;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            margin-right: 8px;
+            background-color: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover,
+        .btn-active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn i, 
+        .btn svg {
+            margin-right: 6px;
+        }
+        
+        /* Tooltips */
+        [data-toggle="tooltip"] {
+            position: relative;
+        }
+        
+        [data-toggle="tooltip"]::before {
+            content: attr(data-original-title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: none;
+        }
+        
+        [data-toggle="tooltip"]:hover::before {
+            display: block;
+        }
+        
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+        
+        .navbar-left,
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title h2 {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--dark);
+            margin-right: 10px;
+        }
+        
+        .page-title a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .page-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .text-truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* Navbar Right */
+        .page-header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .page-header-right ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .page-header-right ul li {
+            margin-left: 20px;
+        }
+        
+        .header-icon-box,
+        .logout_box a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .header-icon-box:hover,
+        .logout_box a:hover {
+            color: var(--primary);
+        }
+        
+        .logout_box a:hover {
+            color: var(--danger);
+        }
+        
+        /* Dropdown Menu */
+        .add_box .dropdown-menu {
+            position: absolute;
+            right: 0;
+            background-color: var(--white);
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--light);
+        }
+        
+        .dropdown-item svg {
+            margin-right: 8px;
+        }
+        
+        /* Notifications */
+        .notification_box .badge {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 12px;
+            padding: 4px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        
+        .notification-dropdown {
+            min-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        /* Mobile Menu */
+        .menu-collapse {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .menu-collapse .mc-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+        }
+        
+        .mcw-line {
+            height: 3px;
+            background-color: var(--dark);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                margin-top: 1rem;
+            }
+        
+            .btn {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+        
+            .menu-collapse {
+                display: block;
+            }
+        
+            .d-none.d-lg-flex {
+                display: none !important;
+            }
+        }
+    </style>    
 </head>
 
 <body class="bg-gray-50">
@@ -48,49 +299,49 @@
                             class="h-10 mr-4 rounded-full border-black border-4 bg-black" alt="Stoic Logo">
                         <span class="self-center whitespace-nowrap">STOIC HRMS</span>
                     </a>
-                    <form action="#" method="GET" class="hidden lg:block lg:pl-32">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="mt-1 relative lg:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5"
-                                placeholder="Search">
-                        </div>
-                    </form>
+                     <!-- NAVBAR RIGHT -->
+                    
+        
                 </div>
-                <div class="flex items-center">
-                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                        class="text-white bg-cyan-700 ml-5 h-10 w-10 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-                        type="button">
-                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <div id="dropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="Settings.html"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="Hrmlogin.html"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                                    out</a>
-                            </li>
-                        </ul>
-                    </div>
+                
+                    
+                  
+                <div class="page-header-right float-right d-flex justify-right-end ">
+                    <span id="timer-clock"></span>
+                    <ul>
+                        <!-- SEARCH -->
+                        <li data-toggle="tooltip" data-title="Search">
+                            <a href="javascript:;" class="d-block header-icon-box open-search">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </li>
+        
+                        <!-- Sticky Note -->
+                        <li data-toggle="tooltip" data-title="Sticky Notes">
+                            <a href="https://work.suitewise.in/account/sticky-notes" class="d-block header-icon-box openRightModal">
+                                <i class="fas fa-sticky-note"></i>
+                            </a>
+                        </li>
+        
+                        <!-- ADD -->
+                        <li class="add_box">
+                            <a href="#" class="d-block header-icon-box dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                            
+                        </li>
+        
+                        
+        
+                        <!-- Logout -->
+                        <li class="logout_box">
+                            <a href="javascript:;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+                
             </div>
 
             <!-- Mobile Menu -->
@@ -104,6 +355,7 @@
             </div>
         </div>
     </nav>
+
 
 
     <!-- ===================================================================================================== -->
@@ -330,17 +582,13 @@
                                     </a>
                                 </div>
                                 <!-- <button type="button" data-modal-toggle="add-Lead-modal" -->
-                                <button type="button" data-modal-target="AddLead-modal"
-                                    data-modal-toggle="AddLead-modal"
-                                    class="text-white bg-cyan-600 mr-2 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center rounded-lg text-sm px-3 py-2 text-center sm:ml-auto">
-                                    <svg class="-ml-1  h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    Add Employee
-                                </button>
+                                    <button onclick="toggleModal('AddLead-modal')"
+                                    class="text-white bg-cyan-600 mr-2 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center rounded-lg text-sm px-3 py-2 text-center sm:ml-auto"> 
+                                <svg class="-ml-1 h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                Add Employee
+                            </button>
                                 <a href="#" id="export-btn"
                                     class="w-1/2 text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto">
                                     <svg class="-ml-1  h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
@@ -364,111 +612,36 @@
                                         <tr>
                                             <th scope="col" class="p-4">
                                                 <div class="flex items-center">
-                                                    <input id="checkbox-all" aria-describedby="checkbox-1"
-                                                        type="checkbox"
+                                                    <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox"
                                                         class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
                                                     <label for="checkbox-all" class="sr-only">checkbox</label>
                                                 </div>
                                             </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Employee Name
                                             </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                 Employee Email
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Employee Email
                                             </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Employee Phone
                                             </th>
-                                             <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Employee Address
                                             </th>
-                                            <!-- <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Req. Product
-                                            </th>  -->
-
-
-                                            <th scope="col" class="p-4">
-                                            </th>
+                                            <th scope="col" class="p-4"></th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200">
-
-
-
-
-
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="p-4 w-4">
-                                                <div class="flex items-center">
-                                                    <input id="checkbox-194556" aria-describedby="checkbox-1"
-                                                        type="checkbox"
-                                                        class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
-                                                    <label for="checkbox-194556" class="sr-only">checkbox</label>
-                                                </div>
-                                            </td>
-
-                                            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                                <a href="./Profile.html">
-                                                    <div class="text-base font-semibold text-gray-900">Shyam
-                                
-                                                    </div>
-                                                </a>
-                                                <!-- <div class="text-sm font-normal text-gray-500">email@gmail.com</div> -->
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                email@gmail.com</td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                9603461234</td>
-                                             <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                Pune
-                                            </td>
-                                            <!-- <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                Software Product
-                                            </td> -->
-
-                                            <td class="p-4 whitespace-nowrap space-x-2">
-                                                <button type="button" data-modal-target="EditLead-modal"
-                                                    data-modal-toggle="EditLead-modal"
-                                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class=" h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                        </path>
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-
-                                                </button>
-                                                <button type="button" data-modal-target="DeleteLead-modal"
-                                                    data-modal-toggle="DeleteLead-modal"
-                                                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class=" h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-
-                                                </button>
-                                            </td>
-                                        </tr>
-
-
-
+                                    <tbody class="bg-white divide-y divide-gray-200" id="employee-table-body">
+                                        <!-- Dynamically added employee rows will appear here -->
+                                         
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div
                     class="bg-white sticky sm:flex items-center w-full sm:justify-between bottom-0 right-0 border-t border-gray-200 p-4">
                     <div class="flex items-center mb-4 sm:mb-0">
@@ -614,88 +787,147 @@
 
 
 
-                <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                    id="AddLead-modal">
+                <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50 h-modal sm:h-full" id="AddLead-modal">
                     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                         <!-- Modal content -->
-                        <div class="bg-white rounded-lg shadow relative">
+                        <div class="bg-white rounded-lg shadow-lg">
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-5 border-b rounded-t">
-                                <h3 class="text-xl font-semibold">
-                                    Add Employee
-                                </h3>
+                                <h3 class="text-xl font-semibold">Add Employee</h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-hide="AddLead-modal">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
+                                    onclick="document.getElementById('AddLead-modal').classList.add('hidden')">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
+                                <form id="employee-form" onsubmit="addEmployee(event)">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="Lead-name"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Employee
-                                                Name</label>
-                                            <input type="text" name="Lead-name" id="Lead-name"
+                                            <label for="Name" class="text-sm font-medium text-gray-900 block mb-2">Employee Name</label>
+                                            <input type="text" name="Namee" id="Lead-name"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="Apple Imac 27”" required>
+                                                placeholder="John Doe" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="email"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Employee Email</label>
-                                            <input type="email" name="email" id="email"
+                                            <label for="Email" class="text-sm font-medium text-gray-900 block mb-2">Employee Email</label>
+                                            <input type="email" name="Eemail" id="email"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="example@Req-Product.com" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="phone-number"
-                                                class="text-sm font-medium text-gray-900 block mb-2"> Employee Phone
+                                            <label for="number" class="text-sm font-medium text-gray-900 block mb-2">Employee Phone
                                                 Number</label>
-                                            <input type="number" name="phone-number" id="phone-number"
+                                            <input type="tel" name="Number" id="phone-number"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="e.g. +(12)3456 789" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="address"
-                                                class="text-sm font-medium text-gray-900 block mb-2"> Employee Address</label>
-                                            <input type="text" name="address" id="address"
+                                            <label for="Address" class="text-sm font-medium text-gray-900 block mb-2">Employee Address</label>
+                                            <input type="text" name="addresss" id="address"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="Pune" required>
                                         </div>
-                                        <!-- <div class="col-span-6 sm:col-span-3">
-                                            <label for="Req-Product"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Req Product</label>
-                                            <input type="text" name="Req-Product" id="Req-Product"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="123456" required>
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="Req-Product"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Added By</label>
-                                            <input type="text" name="addedby" id="addedby"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="Rahul" required>
-                                        </div> -->
                                     </div>
+                                    <div class="p-6 border-t border-gray-200 rounded-b">
+                                        <button
+                                            class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                            type="submit">Add Employee</button>
+                                    </div>
+                                </form>
                             </div>
-                            <!-- Modal footer -->
-                            <div class="p-6 border-t border-gray-200 rounded-b">
-                                <button
-                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    type="submit">Add Employee</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
+                
+                                    <!-- Modal footer -->
+                                    <div class="p-6 border-t border-gray-200 rounded-b">
+                                        <button class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Add Employee</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
 
+                <script>
+                    function toggleModal(modalId) {
+                        const modal = document.getElementById(modalId);
+                        if (modal.classList.contains('hidden')) {
+                            modal.classList.remove('hidden');
+                        } else {
+                            modal.classList.add('hidden');
+                        }
+                    }
+                
+                    function addEmployee(event) {
+                        event.preventDefault(); // Prevent the form from submitting the traditional way
+                
+                        // Get form data
+                        const name = document.getElementById('Lead-name').value;
+                        const email = document.getElementById('email').value;
+                        const phoneNumber = document.getElementById('phone-number').value;
+                        const address = document.getElementById('address').value;
+                
+                        // Create a new row and cells
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                        <td class="p-4">
+            <div class="flex items-center">
+                <input type="checkbox" class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
+                <label class="sr-only">checkbox</label>
+            </div>
+        </td>
+       <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+            <div class="text-base font-semibold text-gray-900">${name}</div>
+        </td>
+        <td class="text-base font-semibold text-gray-900">${email}</td>
+        <td class="text-base font-semibold text-gray-900">${phoneNumber}</td>
+        <td class="text-base font-semibold text-gray-900">${address}</td>
+      <td class="p-4 whitespace-nowrap space-x-2">
+            <button type="button" data-modal-target="EditLead-modal"
+                data-modal-toggle="EditLead-modal"
+                class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"
+                onclick="openEditModal(this)">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                    </path>
+                    <path fill-rule="evenodd"
+                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <button type="button" data-modal-target="DeleteLead-modal"
+                data-modal-toggle="DeleteLead-modal"
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"
+                onclick="confirmDelete(this)">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </td>
+    `;
+                
+                        // Append the new row to the table body
+                        document.getElementById('employee-table-body').appendChild(newRow);
+                
+                        // Clear form fields
+                        document.getElementById('employee-form').reset();
+                
+                        // Close the modal
+                        toggleModal('AddLead-modal');
+                    }
+                </script>
 
 
 
@@ -774,8 +1006,14 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+
         });
+
+        
+
+        
     </script>
+    
 
 
 
@@ -788,7 +1026,9 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- <script src="http://localhost:1313/windster/app.bundle.js"></script> -->
 
-    <script src="./script.js"></script>
+    <script src="./script.js">
+        
+    </script>
 
 </body>
 

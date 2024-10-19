@@ -1,175 +1,649 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-  <head>
-    <script
-      src="/windster/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=windster/livereload"
-      data-no-instant
-      defer
-    ></script>
+
+<head>
+    <!-- TailwindCSS (Make sure you need it for utility classes) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Stoic CRM" />
-    <meta name="author" content="Themesberg" />
-    <meta name="generator" content="Hugo 0.134.3" />
+
+    <!-- Bootstrap CSS (For styling and components like modals) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (for Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Flowbite (Optional, if using Flowbite components with TailwindCSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+    <!-- Font Awesome (For icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Meta Information -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stoic CRM">
+    <meta name="author" content="Themesberg">
+    <meta name="generator" content="Hugo 0.134.3">
+
+    <!-- Page Title -->
+    
 
     <title>Employee | STOIC HRMS</title>
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+       
+        /* Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Variables */
+        :root {
+            --blue: #1d82f5;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #ea4c89;
+            --red: #D30000;
+            --orange: #fd7e14;
+            --yellow: #FCBD01;
+            --green: #28a745;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: var(--blue);
+            --secondary: var(--gray);
+            --success: var(--green);
+            --info: var(--cyan);
+            --warning: var(--yellow);
+            --danger: var(--red);
+            --light: #f8f9fa;
+            --dark: var(--gray-dark);
+        }
+        
+        /* Body Styling */
+        body {
+            font-family: Arial, "Helvetica Neue", sans-serif;
+            font-size: 14px;
+            color: #28313c;
+            background-color: var(--light);
+            line-height: 1.5;
+        }
+        
+        /* Buttons */
+        .btn-group {
+            display: inline-flex;
+            margin-top: 0.5rem;
+            margin-left: 0;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            margin-right: 8px;
+            background-color: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover,
+        .btn-active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn i, 
+        .btn svg {
+            margin-right: 6px;
+        }
+        
+        /* Tooltips */
+        [data-toggle="tooltip"] {
+            position: relative;
+        }
+        
+        [data-toggle="tooltip"]::before {
+            content: attr(data-original-title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: none;
+        }
+        
+        [data-toggle="tooltip"]:hover::before {
+            display: block;
+        }
+        
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+        
+        .navbar-left,
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title h2 {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--dark);
+            margin-right: 10px;
+        }
+        
+        .page-title a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .page-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .text-truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* Navbar Right */
+        .page-header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .page-header-right ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .page-header-right ul li {
+            margin-left: 20px;
+        }
+        
+        .header-icon-box,
+        .logout_box a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .header-icon-box:hover,
+        .logout_box a:hover {
+            color: var(--primary);
+        }
+        
+        .logout_box a:hover {
+            color: var(--danger);
+        }
+        
+        /* Dropdown Menu */
+        .add_box .dropdown-menu {
+            position: absolute;
+            right: 0;
+            background-color: var(--white);
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--light);
+        }
+        
+        .dropdown-item svg {
+            margin-right: 8px;
+        }
+        
+        /* Notifications */
+        .notification_box .badge {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 12px;
+            padding: 4px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        
+        .notification-dropdown {
+            min-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        /* Mobile Menu */
+        .menu-collapse {
+            display: none;
+            cursor: pointer;
+        }
+        .modal-backdrop {
+            backdrop-filter: none;  /* Ensure there's no blur effect */
+            background-color: rgba(0, 0, 0, 0.5); /* Keep the dimmed background effect */
+        }
+        
+        .modal-content {
+            filter: none; /* Ensure the modal content itself isn't blurred */
+        }
+        
+        .menu-collapse .mc-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+        }
+        
+        .mcw-line {
+            height: 3px;
+            background-color: var(--dark);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                margin-top: 1rem;
+            }
+        
+            .btn {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+        
+            .menu-collapse {
+                display: block;
+            }
+        
+            .d-none.d-lg-flex {
+                display: none !important;
+            }
+        }
+    </style>        
+</head>
 
-  <body class="bg-gray-50">
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
+<body class="bg-gray-50">
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+    <!-- ===================================================================================================== -->
+    <!-- ===================================    Navbar   ===================================================== -->
+    <!-- ===================================================================================================== -->
+
+
 
     <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
-      <div class="px-3 py-3 lg:px-5 lg:pl-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center justify-start">
-            <button
-              id="toggleSidebarMobile"
-              aria-expanded="false"
-              aria-controls="mobileMenu"
-              class="lg:hidden text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
-            >
-              <svg
-                id="toggleSidebarMobileHamburger"
-                class="w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-            <a
-              href="http://localhost:1313/windster/"
-              class="text-xl font-bold flex items-center lg:ml-2.5"
-            >
-              <img
-                src="https://lh3.googleusercontent.com/p/AF1QipOhQ9UlVMaznORos28Gn5prYVrsnbcYdxYu5ldw=s1360-w1360-h1020"
-                class="h-10 mr-4 rounded-full border-black border-4 bg-black"
-                alt="Stoic Logo"
-              />
-              <span class="self-center whitespace-nowrap">STOIC HRMS</span>
-            </a>
-            <form action="#" method="GET" class="hidden lg:block lg:pl-32">
-              <label for="topbar-search" class="sr-only">Search</label>
-              <div class="mt-1 relative lg:w-64">
-                <div
-                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                >
-                  <svg
-                    class="w-5 h-5 text-gray-500"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
-                    ></path>
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start">
+                  <button id="toggleSidebarMobile" aria-expanded="false" aria-controls="mobileMenu"
+                  class="lg:hidden text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
+                  <svg id="toggleSidebarMobileHamburger" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                          clip-rule="evenodd"></path>
                   </svg>
+              </button>
+                    <a href="http://localhost:1313/windster/" class="text-xl font-bold flex items-center lg:ml-2.5">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipOhQ9UlVMaznORos28Gn5prYVrsnbcYdxYu5ldw=s1360-w1360-h1020"
+                            class="h-10 mr-4 rounded-full border-black border-4 bg-black" alt="Stoic Logo">
+                        <span class="self-center whitespace-nowrap">STOIC HRMS</span>
+                    </a>
                 </div>
-                <input
-                  type="text"
-                  name="email"
-                  id="topbar-search"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5"
-                  placeholder="Search"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="flex items-center">
-            <button
-              id="dropdownDefaultButton"
-              data-dropdown-toggle="dropdown"
-              class="text-white bg-cyan-700 ml-5 h-10 w-10 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-              type="button"
-            >
-              <svg
-                class="w-2.5 h-2.5 ms-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
-            <div
-              id="dropdown"
-              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-            >
-              <ul
-                class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownDefaultButton"
-              >
-                <li>
-                  <a
-                    href="Settings.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Settings</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="Hrmlogin.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Sign out</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+                
+                <!-- NAVBAR RIGHT -->
+                <div class="page-header-right d-flex justify-end">
+                    <span id="timer-clock"></span>
+                    <ul class="list-inline">
+                        <!-- SEARCH -->
+                       <!-- SEARCH -->
+<li data-toggle="tooltip" data-title="Search">
+    <a class="d-block header-icon-box open-search" onclick="showSearchModal()" data-toggle="tooltip" data-original-title="Search">
+        <i class="fas fa-search"></i>
+    </a>
+</li>
 
-        <!-- Mobile Menu -->
-        <div
-          id="mobileMenu"
-          class="hidden flex flex-col space-y-4 pb-4 mt-2 bg-white shadow-lg rounded-lg"
-        >
-          <a href="index.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Dashboard</a
-          >
-          <a href="Employee.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Employee</a
-          >
-          <a href="Leaves.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Leaves</a
-          >
-          <a href="Attendance.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Attendance</a
-          >
-          <a href="Designation.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Designation</a
-          >
-          <a href="Settings.html" class="p-2 text-gray-700 hover:bg-gray-100"
-            >Settings</a
-          >
+<!-- Search Modal -->
+<div id="searchModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeSearchModal()">&times;</span>
+        <h2 class="modal-header-title">Search</h2>
+        <form>
+            <div class="form-group">
+                <label for="searchType">Search Type:</label>
+                <select id="searchType" class="form-control">
+                    <option>Ticket</option>
+                    <option>Invoice</option>
+                    <option>Notice</option>
+                    <option>Task</option>
+                    <option>Project</option>
+                    <option>Estimate</option>
+                    <option>Employee</option>
+                    <option>Client</option>
+                    <option>Lead</option>
+
+
+
+
+
+
+
+                    <!-- Add other search types as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="searchKeyword">Keyword:</label>
+                <input type="text" id="searchKeyword" class="form-control" placeholder="Enter keyword to search">
+            </div>
+            <div class="modal-actions">
+                <button type="submit" class="btn btn-danger">Search</button>
+                <button type="button" onclick="closeSearchModal()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- CSS for Modal Styling -->
+<style>
+    /* Modal Background */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 50px; /* Padding to avoid touching the very top */
+
+    }
+
+    /* Modal Content Styling */
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 50%;
+        max-width: 600px;
+        position: relative;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    /* Animation for Modal */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover, .close:focus {
+        color: #555;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Modal Header */
+    .modal-header-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    /* Form Fields Styling */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 500;
+        color: #444;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    /* Modal Actions (Buttons) */
+    .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: blue;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>
+
+<!-- JavaScript for Modal -->
+<script>
+    // Function to show the modal
+    function showSearchModal() {
+        document.getElementById('searchModal').style.display = 'flex';  // Change from 'block' to 'flex' for centering
+    }
+
+    // Function to close the modal
+    function closeSearchModal() {
+        document.getElementById('searchModal').style.display = 'none';
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function (event) {
+        const modal = document.getElementById('searchModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+                        <!-- Sticky Note -->
+                        <li data-toggle="tooltip" data-title="Sticky Notes" style="display: inline-block; margin-right: 18px;">
+                            <a class="d-block header-icon-box" data-toggle="tooltip" data-original-title="Sticky Notes"
+                                onclick="showStickyNoteModal()">
+                                <i class="fas fa-sticky-note"></i>
+                            </a>
+                        </li>
+                        
+                        <!-- Sticky Notes Modal -->
+                        <div id="stickyNoteModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeStickyNoteModal()">&times;</span>
+                                <h2>Sticky Notes</h2>
+                                <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."></textarea>
+                                <br>
+                                <button onclick="saveNote()">Save Note</button>
+                            </div>
+                        </div>
+                        
+                        <!-- CSS for Modal -->
+                        <style>
+                            .modal {
+                                display: none;
+                                position: fixed;
+                                z-index: 1;
+                                left: 0;
+                                top: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(0, 0, 0, 0.5);
+                            }
+                        
+                            .modal-content {
+                                background-color: #fff;
+                                margin: 15% auto;
+                                padding: 20px;
+                                border: 1px solid #888;
+                                width: 50%;
+                                border-radius: 8px;
+                            }
+                        
+                            .close {
+                                color: #aaa;
+                                float: right;
+                                font-size: 28px;
+                                font-weight: bold;
+                            }
+                        
+                            .close:hover,
+                            .close:focus {
+                                color: black;
+                                text-decoration: none;
+                                cursor: pointer;
+                            }
+                        </style>
+                        
+                        <!-- JavaScript for Modal -->
+                        <script>
+                            function showStickyNoteModal() {
+                                document.getElementById('stickyNoteModal').style.display = 'block';
+                            }
+    
+                            function closeStickyNoteModal() {
+                                document.getElementById('stickyNoteModal').style.display = 'none';
+                            }
+    
+                            function saveNote() {
+                                const noteContent = document.getElementById('noteContent').value;
+                                alert('Note Saved: ' + noteContent);
+                                // Here you can add your code to actually save the note (e.g., send it to a server)
+                                closeStickyNoteModal();
+                            }
+    
+                            // Close modal when clicking outside of it
+                            window.onclick = function (event) {
+                                const modal = document.getElementById('stickyNoteModal');
+                                if (event.target == modal) {
+                                    modal.style.display = 'none';
+                                }
+                            }
+                        </script>
+                        <!-- Sticky Notes End -->
+    
+                        <div class="notification_box dropdown" style="display: inline-block;">
+                            <a class="d-block header-icon-box openRightModal" data-toggle="tooltip" data-original-title="Notifications">
+                                <i class="fa fa-bell f-16 text-dark-grey"></i>
+                            </a>
+                        </div>
+                        <!-- ADD Dropdown -->
+                        <li class="nav-item dropdown list-inline-item add_box">
+                            <a class="d-block header-icon-box" href="#" id="addDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="addDropdown">
+                                <a class="dropdown-item" href="#">Add Project</a>
+                                <a class="dropdown-item" href="#">Add Task</a>
+                            </div>
+                        </li>
+    
+                        <!-- Logout Dropdown -->
+                        <li class="nav-item dropdown list-inline-item logout_box">
+                            <a class="d-block header-icon-box" href="#" id="logoutDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="logoutDropdown">
+                                <a class="dropdown-item" href="Settings.html">Settings</a>
+                                <a class="dropdown-item" href="login.html">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    
+                <!-- Search Modal -->
+               
+            </div>
+    
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden flex flex-col space-y-4 pb-4 mt-2 bg-white shadow-lg rounded-lg">
+                <a href="index.html" class="p-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                <a href="Employee.html" class="p-2 text-gray-700 hover:bg-gray-100">Employee</a>
+                <a href="Leaves.html" class="p-2 text-gray-700 hover:bg-gray-100">Leaves</a>
+                <a href="Attendance.html" class="p-2 text-gray-700 hover:bg-gray-100">Attendance</a>
+                <a href="Designation.html" class="p-2 text-gray-700 hover:bg-gray-100">Designation</a>
+                <a href="Settings.html" class="p-2 text-gray-700 hover:bg-gray-100">Settings</a>
+            </div>
         </div>
-      </div>
     </nav>
+    
+
 
     <!-- ===================================================================================================== -->
     <!-- ===================================    Sidebar  ===================================================== -->
@@ -422,6 +896,14 @@
     </style>
 </head>
 
+
+
+
+<!------------------------------------------------------------------------------------------------->
+<!----------------------------------//Designation Table//------------------------------------------>
+<!------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------->
+
 <body class="bg-gray-100">
     <div class="content-wrapper">
         
@@ -430,106 +912,191 @@
         <main class="p-8">
             <h1 class="text-2xl font-bold mb-4">Designation Management</h1>
 
-            <div class="flex justify-between mb-4">
+            <div class="flex justify-between mb-4 items-center">
                 <input type="text" id="search" placeholder="Search" class="mb-2 p-2 border border-gray-300 rounded-lg w-1/2" />
                 <div class="flex space-x-2">
-                    <select id="rows" class="mb-2 p-2 border border-gray-300 rounded-lg">
-                        <option value="10">Rows 5</option>
-                        <option value="10">Rows 10</option>
-                        <option value="10">Rows 15</option>
-                        <option value="20">Rows 20</option>
-                        <option value="10">Rows 25</option>
-                        <option value="50">Rows 50</option>
+                    <select id="rows" class="mb-0.7 p-2 border border-gray-300 rounded-lg">
+                        <option value="10">Rows 5 </option>
+                        <option value="10">Rows 10 </option>
+                        <option value="10">Rows 15 </option>
+                        <option value="20">Rows 20 </option>
+                        <option value="10">Rows 25 </option>
+                        <option value="50">Rows 50 </option>
                     </select>
-                    <button id="createButton" class="bg-cyan-700 text-white px-4 py-2 rounded-lg hover:bg-cyan-800">Create</button>
+                    <button id="createButton" class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-cyan-800">
+                      Create Designation
+                    </button>
+                    
+                    
+                    
                 </div>
             </div>
+<!-- Responsive Table -->
+<div class="overflow-x-auto mt-4">
+  <table class="min-w-full table-auto bg-white border border-gray-200">
+    <thead class="bg-gray-200"> <!-- Added gray background here -->
+      <tr>
+          <!-- font-bold applied for bold text -->
+          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Code</th>
+          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Name</th>
+          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Designation</th>
+          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Status</th>
+          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Actions</th>
+      </tr>
+  </thead>
+  
 
-            <!-- Responsive Table -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full table-auto bg-white border border-gray-200">
-                    <thead>
-                        <tr>
-                            <th class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
-                            <th class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Designation</th>
-                            <th class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Remarks</th>
-                            <th class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="designationTableBody">
-                        <!-- Dynamic rows will go here -->
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
+      <tbody id="designationTableBody">
+        <!-- Hardcoded rows (predefined data) -->
+        <tr class="border-b border-gray-200"> <!-- Added border class here -->
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">101</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Charul Jagtap</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Director & CEO</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                <span class="inline-block w-3 h-3 mr-2 bg-green-500 rounded-full"></span> Active
+            </td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
+            </td>
+        </tr>
+        <tr class="border-b border-gray-200"> <!-- Added border class here -->
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">102</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Jane Smith</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Developer</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                <span class="inline-block w-3 h-3 mr-2 bg-red-500 rounded-full"></span> Inactive
+            </td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
+            </td>
+        </tr>
+        <!-- Dynamic rows added here -->
+    </tbody>
+    
+</div>
+<!--style>
+  .delete-button {
+    font-size: 20px; /* Increase font size */
+    padding: 10px; /* Add padding for a larger button */
+    background-color: transparent; /* Background color (transparent for icon buttons) */
+    color: red; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
 
-    <!-- Modal for Designation Details -->
-    <div id="designationModal" class="modal">
-        <div class="modal-content">
-            <span id="closeModal" class="float-right cursor-pointer text-gray-600">✖</span>
-            <h2 class="text-lg font-bold mb-4">Designation Details</h2>
-            <form id="designationForm">
-                <label for="code" class="block mb-1">* Code:</label>
-                <input type="text" id="code" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
-                <label for="designation" class="block mb-1">* Name:</label>
-                <input type="text" id="designation" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
-                <label for="status" class="block mb-1">Status:</label>
-                <select id="status" class="mb-2 p-2 border border-gray-300 rounded-lg w-full">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-                <label for="remarks" class="block mb-1">Remarks:</label>
-                <textarea id="remarks" class="mb-2 p-2 border border-gray-300 rounded-lg w-full"></textarea>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Save</button>
-                <button type="button" id="cancelButton" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 ml-2">Cancel</button>
-            </form>
+  .delete-button:hover {
+    color: darkred; /* Darker color on hover */
+  }
+</!--style>
+
+<!-- Modal for Designation Details -->
+<div id="designationModal" class="modal" style="display:none;">
+  <div class="modal-content">
+      <span id="closeModal" class="float-right cursor-pointer text-gray-600">✖</span>
+
+      <!-- Adjust the heading to have a bold font and gray background -->
+      <h2 class="text-lg font-bold mb-4 bg-gray-200 p-2 rounded">Designation Details</h2>
+
+      <form id="designationForm">
+          <label for="code" class="block mb-1">* Code:</label>
+          <input type="text" id="code" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
+          <label for="name" class="block mb-1">* Name:</label>
+          <input type="text" id="name" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
+          <label for="designation" class="block mb-1">* Designation:</label>
+          <input type="text" id="designation" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
+          <label for="status" class="block mb-1">Status:</label>
+          <select id="status" class="mb-2 p-2 border border-gray-300 rounded-lg w-full">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+          </select>
+
+          <div class="flex justify-between mt-4"> <!-- Added flex container -->
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-600">Save</button>
+            <button type="button" id="cancelButton" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 ml-2">Cancel</button>
         </div>
-    </div>
+        
+      </form>
+  </div>
+</div>
 
-    <script>
-        // Modal functionality
-        const modal = document.getElementById('designationModal');
-        const createButton = document.getElementById('createButton');
-        const closeModal = document.getElementById('closeModal');
-        const cancelButton = document.getElementById('cancelButton');
+<script>
+  // Modal functionality
+  const modal = document.getElementById('designationModal');
+  const createButton = document.getElementById('createButton');
+  const closeModal = document.getElementById('closeModal');
+  const cancelButton = document.getElementById('cancelButton');
 
-        createButton.addEventListener('click', () => {
-            modal.style.display = 'block'; // Show modal
-        });
+  // Open modal when "Create" button is clicked
+  createButton.addEventListener('click', () => {
+      modal.style.display = 'block'; // Show modal
+  });
 
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none'; // Hide modal
-        });
+  // Close modal when "X" button is clicked
+  closeModal.addEventListener('click', () => {
+      modal.style.display = 'none'; // Hide modal
+  });
 
-        cancelButton.addEventListener('click', () => {
-            modal.style.display = 'none'; // Hide modal
-        });
+  // Close modal when "Cancel" button is clicked
+  cancelButton.addEventListener('click', () => {
+      modal.style.display = 'none'; // Hide modal
+  });
 
-        // Handle form submission
-        document.getElementById('designationForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const code = document.getElementById('code').value;
-            const designation = document.getElementById('designation').value;
-            const status = document.getElementById('status').value;
-            const remarks = document.getElementById('remarks').value;
+  // Handle form submission
+  document.getElementById('designationForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent default form submission
 
-            const tableBody = document.getElementById('designationTableBody');
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${code}</td>
-  <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${designation}</td>
-  <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${status}</td>
-  <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${remarks}</td>
-  <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-    <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600">Delete</button>
-  </td>
-            `;
-            tableBody.appendChild(newRow);
-            modal.style.display = 'none'; // Hide modal after adding
-            document.getElementById('designationForm').reset(); // Reset form
-        });
-    </script>
-</body>
-</html>
+      // Get form values
+      const code = document.getElementById('code').value;
+      const name = document.getElementById('name').value;
+      const designation = document.getElementById('designation').value;
+      const status = document.getElementById('status').value;
+
+      // Validate required fields
+      if (code.trim() === '' || name.trim() === '' || designation.trim() === '') {
+          alert("Please fill out all required fields.");
+          return;
+      }
+      // Determine the status dot color
+      const statusDot = status === 'Active' 
+          ? '<span class="inline-block w-3 h-3 mr-2 bg-green-500 rounded-full"></span> Active'
+          : '<span class="inline-block w-3 h-3 mr-2 bg-red-500 rounded-full"></span> Inactive';
+
+      // Get the table body to append new row
+      const tableBody = document.getElementById('designationTableBody');
+      const newRow = document.createElement('tr'); // Create new row
+
+      // Set the inner HTML of the row with the data and the delete button
+      newRow.innerHTML = `
+          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${code}</td>
+          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${name}</td>
+          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${designation}</td>
+          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${statusDot}</td>
+          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+            <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
+          </td>
+      `;
+    
+
+      // Append the new row to the table
+      tableBody.appendChild(newRow);
+
+      // Add delete functionality to the delete button in the new row
+      newRow.querySelector('.delete-button').addEventListener('click', function () {
+          newRow.remove(); // Remove the row when the delete button is clicked
+      });
+
+      // Hide the modal after adding the row
+      modal.style.display = 'none'; 
+
+      // Reset the form
+      document.getElementById('designationForm').reset();
+  });
+</script>
+
+  </body>
+  </html>
