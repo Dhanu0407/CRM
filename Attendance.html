@@ -501,10 +501,13 @@
                     <div id="stickyNoteModal" class="modal" style="display: none;">
                         <div class="modal-content">
                             <span class="close" onclick="closeStickyNoteModal()">&times;</span>
-                            <h2>Sticky Notes</h2>
-                            <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."></textarea>
-                            <br>
-                            <button onclick="saveNote()">Save Note</button>
+                            <h2 class="text-xl font-semibold mb-4">Sticky Notes</h2>
+                            <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."
+                                class="w-full p-2 border rounded mb-4"></textarea>
+                            <div class="flex justify-end gap-4">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="saveNote()">Save Note</button>
+                                <button class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeStickyNoteModal()">Cancel</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -523,11 +526,12 @@
                     
                         .modal-content {
                             background-color: #fff;
-                            margin: 15% auto;
+                            margin: 10% auto;
                             padding: 20px;
-                            border: 1px solid #888;
-                            width: 50%;
-                            border-radius: 8px;
+                            border: 1px solid #ddd;
+                            width: 40%;
+                            border-radius: 12px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                         }
                     
                         .close {
@@ -539,9 +543,34 @@
                     
                         .close:hover,
                         .close:focus {
-                            color: black;
+                            color: #333;
                             text-decoration: none;
                             cursor: pointer;
+                        }
+                    
+                        textarea {
+                            width: 100%;
+                            resize: none;
+                            border: 1px solid #ccc;
+                            border-radius: 8px;
+                            padding: 10px;
+                        }
+                    
+                        button {
+                            transition: background-color 0.3s;
+                        }
+                    
+                        button:hover {
+                            background-color: #004e9a;
+                            /* Darker shade of blue */
+                        }
+                    
+                        .bg-blue-500 {
+                            background-color: #007bff;
+                        }
+                    
+                        .bg-gray-500 {
+                            background-color: #6c757d;
                         }
                     </style>
                     
@@ -558,7 +587,7 @@
                         function saveNote() {
                             const noteContent = document.getElementById('noteContent').value;
                             alert('Note Saved: ' + noteContent);
-                            // Here you can add your code to actually save the note (e.g., send it to a server)
+                            // You can add your code here to save the note (e.g., send it to a server)
                             closeStickyNoteModal();
                         }
 
@@ -570,7 +599,7 @@
                             }
                         }
                     </script>
-                    <!-- Sticky Notes End -->
+                    <!-- sticky Note end -->
 
                     
                     <!-- Notification -->
@@ -581,7 +610,7 @@
                     </div>
 
 
-                        <!-- ADD Dropdown -->
+                        <!-- ADD Dropdown 
                         <li class="nav-item dropdown add_box">
                             <a class="d-block header-icon-box" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-original-title="Add">
                                 <i class="fas fa-plus-circle"></i>
@@ -590,7 +619,7 @@
                                 <a class="dropdown-item" href="#">Add Project</a>
                                 <a class="dropdown-item" href="#">Add Task</a>
                             </div>
-                        </li>
+                        </li>-->
                         <!-- Logout Dropdown -->
                         <li class="nav-item dropdown logout_box">
                             <a class="d-block header-icon-box" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -856,11 +885,10 @@
       </div>
 
       <!-- Mark Attendance and Import buttons -->
-      <div class="container mx-auto mb-4 flex justify-between items-center">
-        <div>
-        
+<div class="container mx-auto mb-4 flex justify-between items-center">
+    <div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showAttendanceModal()">Mark Attendance</button>
-        
+
         <!-- Mark Attendance Modal -->
         <div id="attendanceModal" class="modal" style="display: none;">
             <div class="modal-content">
@@ -874,7 +902,6 @@
                             <option>--</option>
                             <option>HR</option>
                             <option>IT</option>
-                            <!-- Add other departments as needed -->
                         </select>
                     </div>
 
@@ -887,7 +914,6 @@
                         <label class="block font-semibold mb-1">Location:</label>
                         <select class="w-full p-2 border rounded">
                             <option>SUITEWISE (OPC) PRIVATE LIMITED</option>
-                            <!-- Add other locations if needed -->
                         </select>
                     </div>
 
@@ -908,7 +934,6 @@
                         <label class="block font-semibold mb-1">Month:</label>
                         <select class="w-full p-2 border rounded">
                             <option>October</option>
-                            <!-- Add other months if needed -->
                         </select>
                     </div>
 
@@ -947,10 +972,11 @@
                     </div>
 
                     <div class="col-span-2 flex justify-end gap-4">
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Save</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
                         <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeAttendanceModal()">Cancel</button>
                     </div>
                 </form>
+                
             </div>
         </div>
         
