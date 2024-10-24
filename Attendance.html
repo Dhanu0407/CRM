@@ -5,7 +5,11 @@
 <head>
     <!-- TailwindCSS (Make sure you need it for utility classes) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Dropify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify/dist/css/dropify.min.css">
+    
     <!-- Bootstrap CSS (For styling and components like modals) -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -513,106 +517,137 @@
     }
 </script>
 
-                        <!-- Sticky Note -->
-                        <li data-toggle="tooltip" data-title="Sticky Notes" style="display: inline-block; margin-right: 18px;">
-                            <a class="d-block header-icon-box" data-toggle="tooltip" data-original-title="Sticky Notes"
-                                onclick="showStickyNoteModal()">
-                                <i class="fas fa-sticky-note"></i>
-                            </a>
-                        </li>
-                        
-                        <!-- Sticky Notes Modal -->
-                        <div id="stickyNoteModal" class="modal" style="display: none;">
-                            <div class="modal-content">
-                                <span class="close" onclick="closeStickyNoteModal()">&times;</span>
-                                <h2>Sticky Notes</h2>
-                                <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."></textarea>
-                                <br>
-                                <button onclick="saveNote()">Save Note</button>
+                        <!-- Sticky Note Icon -->
+                    <li data-toggle="tooltip" data-title="Sticky Notes" style="display: inline-block; margin-right: 18px;">
+                        <a class="d-block header-icon-box" data-toggle="tooltip" data-original-title="Sticky Notes"
+                            onclick="showStickyNoteModal()">
+                            <i class="fas fa-sticky-note"></i>
+                        </a>
+                    </li>
+                    
+                    <!-- Sticky Notes Modal -->
+                    <div id="stickyNoteModal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeStickyNoteModal()">&times;</span>
+                            <h2 class="text-xl font-semibold mb-4">Sticky Notes</h2>
+                            <textarea id="noteContent" rows="5" cols="30" placeholder="Write your note here..."
+                                class="w-full p-2 border rounded mb-4"></textarea>
+                            <div class="flex justify-end gap-4">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="saveNote()">Save Note</button>
+                                <button class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeStickyNoteModal()">Cancel</button>
                             </div>
                         </div>
-                        
-                        <!-- CSS for Modal -->
-                        <style>
-                            .modal {
-                                display: none;
-                                position: fixed;
-                                z-index: 1;
-                                left: 0;
-                                top: 0;
-                                width: 100%;
-                                height: 100%;
-                                background-color: rgba(0, 0, 0, 0.5);
+                    </div>
+                    
+                    <!-- CSS for Modal -->
+                    <style>
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.5);
+                        }
+                    
+                        .modal-content {
+                            background-color: #fff;
+                            margin: 10% auto;
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            width: 40%;
+                            border-radius: 12px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        }
+                    
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+                    
+                        .close:hover,
+                        .close:focus {
+                            color: #333;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    
+                        textarea {
+                            width: 100%;
+                            resize: none;
+                            border: 1px solid #ccc;
+                            border-radius: 8px;
+                            padding: 10px;
+                        }
+                    
+                        button {
+                            transition: background-color 0.3s;
+                        }
+                    
+                        button:hover {
+                            background-color: #004e9a;
+                            /* Darker shade of blue */
+                        }
+                    
+                        .bg-blue-500 {
+                            background-color: #007bff;
+                        }
+                    
+                        .bg-gray-500 {
+                            background-color: #6c757d;
+                        }
+                    </style>
+                    
+                    <!-- JavaScript for Modal -->
+                    <script>
+                        function showStickyNoteModal() {
+                            document.getElementById('stickyNoteModal').style.display = 'block';
+                        }
+
+                        function closeStickyNoteModal() {
+                            document.getElementById('stickyNoteModal').style.display = 'none';
+                        }
+
+                        function saveNote() {
+                            const noteContent = document.getElementById('noteContent').value;
+                            alert('Note Saved: ' + noteContent);
+                            // You can add your code here to save the note (e.g., send it to a server)
+                            closeStickyNoteModal();
+                        }
+
+                        // Close modal when clicking outside of it
+                        window.onclick = function (event) {
+                            const modal = document.getElementById('stickyNoteModal');
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
                             }
-                        
-                            .modal-content {
-                                background-color: #fff;
-                                margin: 15% auto;
-                                padding: 20px;
-                                border: 1px solid #888;
-                                width: 50%;
-                                border-radius: 8px;
-                            }
-                        
-                            .close {
-                                color: #aaa;
-                                float: right;
-                                font-size: 28px;
-                                font-weight: bold;
-                            }
-                        
-                            .close:hover,
-                            .close:focus {
-                                color: black;
-                                text-decoration: none;
-                                cursor: pointer;
-                            }
-                        </style>
-                        
-                        <!-- JavaScript for Modal -->
-                        <script>
-                            function showStickyNoteModal() {
-                                document.getElementById('stickyNoteModal').style.display = 'block';
-                            }
-    
-                            function closeStickyNoteModal() {
-                                document.getElementById('stickyNoteModal').style.display = 'none';
-                            }
-    
-                            function saveNote() {
-                                const noteContent = document.getElementById('noteContent').value;
-                                alert('Note Saved: ' + noteContent);
-                                // Here you can add your code to actually save the note (e.g., send it to a server)
-                                closeStickyNoteModal();
-                            }
-    
-                            // Close modal when clicking outside of it
-                            window.onclick = function (event) {
-                                const modal = document.getElementById('stickyNoteModal');
-                                if (event.target == modal) {
-                                    modal.style.display = 'none';
-                                }
-                            }
-                        </script>
-                        <!-- Sticky Notes End -->
-    
-                        <div class="notification_box dropdown" style="display: inline-block;">
-                            <a class="d-block header-icon-box openRightModal" data-toggle="tooltip" data-original-title="Notifications">
-                                <i class="fa fa-bell f-16 text-dark-grey"></i>
-                            </a>
-                        </div>
-                        <!-- ADD Dropdown -->
-                        <li class="nav-item dropdown list-inline-item add_box">
-                            <a class="d-block header-icon-box" href="#" id="addDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                        }
+                    </script>
+                    <!-- Sticky Notes End -->
+
+                    
+                    <!-- Notification -->
+                    <div class="notification_box dropdown" style="display: inline-block;">
+                        <a class="d-block header-icon-box openRightModal" data-toggle="tooltip" data-original-title="Notifications">
+                            <i class="fa fa-bell f-16 text-dark-grey"></i>
+                        </a>
+                    </div>
+
+
+                        <!-- ADD Dropdown 
+                        <li class="nav-item dropdown add_box">
+                            <a class="d-block header-icon-box" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-original-title="Add">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="addDropdown">
                                 <a class="dropdown-item" href="#">Add Project</a>
                                 <a class="dropdown-item" href="#">Add Task</a>
                             </div>
-                        </li>
-    
+                        </li>-->
                         <!-- Logout Dropdown -->
                         <li class="nav-item dropdown list-inline-item logout_box">
                             <a class="d-block header-icon-box" href="#" id="logoutDropdown" role="button" data-toggle="dropdown"
@@ -878,103 +913,200 @@
       <!-- Mark Attendance and Import buttons -->
       <div class="container mx-auto mb-4 flex justify-between items-center">
         <div>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showAttendanceModal()">Mark Attendance</button>
+        
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showAttendanceModal()">Mark Attendance</button>
 
-  <!-- Mark Attendance Modal -->
-  <div id="attendanceModal" class="modal" style="display: none;">
+        <!-- Mark Attendance Modal -->
+        <div id="attendanceModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeAttendanceModal()">&times;</span>
+                <h2 class="text-xl font-bold mb-4">Mark Attendance</h2>
+                <form class="grid grid-cols-2 gap-4">
+                    <!-- Attendance Details Form -->
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Department:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>--</option>
+                            <option>HR</option>
+                            <option>IT</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Employees:</label>
+                        <input type="text" placeholder="Select Employee" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Location:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>SUITEWISE (OPC) PRIVATE LIMITED</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Mark Attendance By:</label>
+                        <div>
+                            <input type="radio" name="attendanceBy" checked> Month
+                            <input type="radio" name="attendanceBy" class="ml-4"> Date
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Year:</label>
+                        <input type="text" value="2024" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Month:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>October</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Clock In:</label>
+                        <input type="time" value="09:30" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-1">Clock Out:</label>
+                        <input type="time" value="18:30" class="w-full p-2 border rounded">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block font-semibold mb-1">Working From:</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>Office</option>
+                            <option>Home</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Late:</label>
+                        <div>
+                            <input type="radio" name="late" checked> No
+                            <input type="radio" name="late" class="ml-4"> Yes
+                        </div>
+                    </div>
+
+                    <div class="col-span-2 flex items-center gap-4">
+                        <label class="font-semibold">Half Day:</label>
+                        <div>
+                            <input type="radio" name="halfDay" checked> No
+                            <input type="radio" name="halfDay" class="ml-4"> Yes
+                        </div>
+                    </div>
+
+                    <div class="col-span-2 flex justify-end gap-4">
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeAttendanceModal()">Cancel</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+
+        <button class="bg-gray-200 px-4 py-2 rounded ml-2" onclick="showImportModal()">Import</button>
+    </div>
+    <div class="btn-group mt-2 mt-lg-0 mt-md-0 ml-0 ml-lg-3 ml-md-3" role="group">
+        <a class="btn btn-secondary f-14 btn-active" data-toggle="tooltip" data-original-title="Summary">
+            <i class="side-icon fas fa-list-ul"></i>
+        </a>
+
+        <a class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Member">
+            <i class="side-icon fas fa-user"></i>
+        </a>
+
+        <a class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Hour">
+            <i class="side-icon fas fa-clock"></i>
+        </a>
+
+        <a class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Location">
+            <i class="side-icon fas fa-map-marked-alt"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Import Modal -->
+<div id="importModal" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close" onclick="closeAttendanceModal()">&times;</span>
-        <h2 class="text-xl font-bold mb-4">Mark Attendance</h2>
-        <form class="grid grid-cols-2 gap-4">
-            <!-- Attendance Details Form -->
-            <div class="col-span-2">
-                <label class="block font-semibold mb-1">Department:</label>
-                <select class="w-full p-2 border rounded">
-                    <option>--</option>
-                    <option>HR</option>
-                    <option>IT</option>
-                    <!-- Add other departments as needed -->
-                </select>
-            </div>
+        <span class="close" onclick="closeImportModal()">&times;</span>
+        <h2 class="text-xl font-bold mb-4">Import Attendance</h2>
 
-            <div class="col-span-2">
-                <label class="block font-semibold mb-1">Employees:</label>
-                <input type="text" placeholder="Select Employee" class="w-full p-2 border rounded">
-            </div>
+        <form method="POST" id="import-attendance-data-form" autocomplete="off">
+            <!-- Hidden Inputs -->
+            <input type="hidden" id="redirect_url" name="redirect_url" value="">
+            <input type="hidden" name="_token" value="xlmr8mIbmEyPCN6MplxH80du4D5UokTN9wgxO5Nc">
 
-            <div class="col-span-2">
-                <label class="block font-semibold mb-1">Location:</label>
-                <select class="w-full p-2 border rounded">
-                    <option>SUITEWISE (OPC) PRIVATE LIMITED</option>
-                    <!-- Add other locations if needed -->
-                </select>
-            </div>
-
-            <div class="col-span-2 flex items-center gap-4">
-                <label class="font-semibold">Mark Attendance By:</label>
-                <div>
-                    <input type="radio" name="attendanceBy" checked> Month
-                    <input type="radio" name="attendanceBy" class="ml-4"> Date
+            <!-- Attendance Import Section -->
+            <div class="add-attendance bg-white rounded">
+                <div class="alert alert-warning" role="alert">
+                    Datetime format should be in Y-m-d H:i:s (e.g. 2022-04-21 12:00:00) format. Make sure the date format is correct in the excel file.
                 </div>
-            </div>
 
-            <div>
-                <label class="block font-semibold mb-1">Year:</label>
-                <input type="text" value="2024" class="w-full p-2 border rounded">
-            </div>
-
-            <div>
-                <label class="block font-semibold mb-1">Month:</label>
-                <select class="w-full p-2 border rounded">
-                    <option>October</option>
-                    <!-- Add other months if needed -->
-                </select>
-            </div>
-
-            <div>
-                <label class="block font-semibold mb-1">Clock In:</label>
-                <input type="time" value="09:30" class="w-full p-2 border rounded">
-            </div>
-
-            <div>
-                <label class="block font-semibold mb-1">Clock Out:</label>
-                <input type="time" value="18:30" class="w-full p-2 border rounded">
-            </div>
-
-            <div class="col-span-2">
-                <label class="block font-semibold mb-1">Working From:</label>
-                <select class="w-full p-2 border rounded">
-                    <option>Office</option>
-                    <option>Home</option>
-                </select>
-            </div>
-
-            <div class="col-span-2 flex items-center gap-4">
-                <label class="font-semibold">Late:</label>
-                <div>
-                    <input type="radio" name="late" checked> No
-                    <input type="radio" name="late" class="ml-4"> Yes
+                <div class="my-3">
+                    <label class="f-14 text-dark-grey mb-12" for="attendance_import">Upload File (file must be a file of type: xls, xlsx, csv)</label>
+                    <input type="file" class="dropify" id="attendance_import" name="import_file" data-height="100">
                 </div>
-            </div>
 
-            <div class="col-span-2 flex items-center gap-4">
-                <label class="font-semibold">Half Day:</label>
-                <div>
-                    <input type="radio" name="halfDay" checked> No
-                    <input type="radio" name="halfDay" class="ml-4"> Yes
+                <div class="mt-10">
+                    <label class="f-14 text-dark-grey" for="heading">File Contains Headings Row</label>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name="heading" class="custom-control-input" id="heading">
+                        <label class="custom-control-label cursor-pointer f-14 mb-20" for="heading"></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-span-2 flex justify-end gap-4">
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Save</button>
-                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" onclick="closeAttendanceModal()">Cancel</button>
+                <!-- Buttons Section -->
+                <button type="button" class="btn-primary rounded f-14 p-2 mr-3 custom-import-button " id="import-attendance-form">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14 mr-1" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+                    </svg> Upload And Move To Next Step
+                </button>
+                
+                <a href="https://work.suitewise.in/account/attendances" class="btn-cancel rounded f-14 p-2 border-0 ml-3 text-gray-700 hover:text-gray-900">
+                    Back
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<!-- CSS for Modal -->
 <style>
+    .custom-import-button {
+        background-color: #007bff; /* Change the background to blue */
+        color: white; /* Keep the text color white */
+        border: 2px solid #0069d9; /* Change the border color to a darker blue */
+        padding: 8px 20px; /* Increase horizontal padding, reduce vertical padding */
+        font-size: 12px; /* Keep the font size readable */
+        font-weight: bold; /* Bold text for emphasis */
+        text-transform: uppercase; /* Uppercase text */
+        border-radius: 4px; /* Rounded corners */
+        width: 250px; /* Increase the width to make it more rectangular */
+        display: inline-flex; /* To align the icon with the text */
+        align-items: center; /* Vertically center icon and text */
+        justify-content: center; /* Horizontally center content */
+        transition: background-color 0.3s, border-color 0.3s; /* Hover transitions */
+    }
+    
+    .custom-import-button:hover {
+        background-color: #0069d9; /* Darker blue on hover */
+        border-color: #0056b3; /* Darker border on hover */
+    }
+    
+    .custom-import-button svg {
+        margin-right: 8px; /* Space between icon and text */
+        font-size: 14px; /* Size of the arrow */
+        width: 12px; /* Width of the icon */
+        height: 12px; /* Height of the icon */
+    }
+    
+    .custom-import-button:focus {
+        outline: none; /* Remove the default focus outline */
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Add a blue focus shadow */
+    }
+    
     .modal {
         display: none;
         position: fixed;
@@ -983,16 +1115,18 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
     }
 
     .modal-content {
-        background-color: #fff;
+        background-color: #fefefe;
         margin: 5% auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 60%;
-        border-radius: 8px;
+        width: 80%;
     }
 
     .close {
@@ -1008,51 +1142,34 @@
         text-decoration: none;
         cursor: pointer;
     }
-
-    input[type="radio"] {
-        margin-right: 4px;
-    }
 </style>
 
-<!-- JavaScript for Modal -->
 <script>
     function showAttendanceModal() {
-        document.getElementById('attendanceModal').style.display = 'block';
+        document.getElementById("attendanceModal").style.display = "block";
     }
 
     function closeAttendanceModal() {
-        document.getElementById('attendanceModal').style.display = 'none';
+        document.getElementById("attendanceModal").style.display = "none";
     }
 
-    // Close modal when clicking outside of it
-    window.onclick = function (event) {
-        const modal = document.getElementById('attendanceModal');
-        if (event.target == modal) {
-            modal.style.display = 'none';
+    function showImportModal() {
+        document.getElementById("importModal").style.display = "block";
+    }
+
+    function closeImportModal() {
+        document.getElementById("importModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("attendanceModal")) {
+            closeAttendanceModal();
+        }
+        if (event.target == document.getElementById("importModal")) {
+            closeImportModal();
         }
     }
 </script>
-<!-- Mark Attendance Button End -->          <button class="bg-gray-200 px-4 py-2 rounded ml-2">Import</button>
-        </div>
-        <div class="btn-group mt-2 mt-lg-0 mt-md-0 ml-0 ml-lg-3 ml-md-3" role="group">
-            <a  class="btn btn-secondary f-14 btn-active" data-toggle="tooltip" data-original-title="Summary">
-                <i class="side-icon fas fa-list-ul"></i>
-            </a>
-    
-            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Member">
-                <i class="side-icon fas fa-user"></i>
-            </a>
-    
-            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Hour">
-                <i class="side-icon fas fa-clock"></i>
-            </a>
-    
-            <a  class="btn btn-secondary f-14" data-toggle="tooltip" data-original-title="Attendance by Location">
-                <i class="side-icon fas fa-map-marked-alt"></i>
-            </a>
-        </div>
-    
-      </div>
 
       <!-- Attendance Table -->
      <div class="row" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">

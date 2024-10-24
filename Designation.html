@@ -876,6 +876,8 @@
         .content-wrapper {
             min-height: 100vh;
             display: flex;
+            margin: 0; /* Remove any default margin */
+            padding: 0; /* Remove any default padding */
         }
 
         .sidebar {
@@ -890,8 +892,8 @@
         }
 
         main {
-            margin-left: 20%; /* Adjust based on sidebar width */
-            width: 80%;
+            margin-left: 12%; /* Adjust based on sidebar width */
+            width: 100%;
         }
     </style>
 </head>
@@ -904,6 +906,7 @@
 <!------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------->
 
+
 <body class="bg-gray-100">
     <div class="content-wrapper">
         
@@ -915,20 +918,21 @@
             <div class="flex justify-between mb-4 items-center">
                 <input type="text" id="search" placeholder="Search" class="mb-2 p-2 border border-gray-300 rounded-lg w-1/2" />
                 <div class="flex space-x-2">
-                    <select id="rows" class="mb-0.7 p-2 border border-gray-300 rounded-lg">
-                        <option value="10">Rows 5 </option>
-                        <option value="10">Rows 10 </option>
-                        <option value="10">Rows 15 </option>
-                        <option value="20">Rows 20 </option>
-                        <option value="10">Rows 25 </option>
-                        <option value="50">Rows 50 </option>
+                    <select id="rows" class="mb-0.7 p-2 border border-gray-300 rounded-lg w-40">
+                        <option value="10">Rows 5</option>
+                        <option value="10">Rows 10</option>
+                        <option value="10">Rows 15</option>
+                        <option value="20">Rows 20</option>
+                        <option value="10">Rows 25</option>
+                        <option value="50">Rows 50</option>
                     </select>
-                    <button id="createButton" class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-cyan-800">
-                      Create Designation
+                    <button id="createButton" class="w-1/2 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="ml-2">Add Designation</span>
                     </button>
-                    
-                    
-                    
+                                        
                 </div>
             </div>
 <!-- Responsive Table -->
@@ -936,60 +940,25 @@
   <table class="min-w-full table-auto bg-white border border-gray-200">
     <thead class="bg-gray-200"> <!-- Added gray background here -->
       <tr>
-          <!-- font-bold applied for bold text -->
-          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Code</th>
-          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Name</th>
-          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Designation</th>
-          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Status</th>
-          <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Actions</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Profile Photo</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Name</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Email</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Code</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Designation</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Status</th>
+        <th class="p-4 text-left text-xs font-bold text-gray-700 uppercase">Actions</th>
       </tr>
   </thead>
   
 
-      <tbody id="designationTableBody">
-        <!-- Hardcoded rows (predefined data) -->
-        <tr class="border-b border-gray-200"> <!-- Added border class here -->
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">101</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Charul Jagtap</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Director & CEO</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                <span class="inline-block w-3 h-3 mr-2 bg-green-500 rounded-full"></span> Active
-            </td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
-            </td>
-        </tr>
-        <tr class="border-b border-gray-200"> <!-- Added border class here -->
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">102</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Jane Smith</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Developer</td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                <span class="inline-block w-3 h-3 mr-2 bg-red-500 rounded-full"></span> Inactive
-            </td>
-            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
-            </td>
-        </tr>
-        <!-- Dynamic rows added here -->
-    </tbody>
+  <tbody id="designationTableBody">
+    
+    <!-- Dynamic rows added here -->
+</tbody>
     
 </div>
-<!--style>
-  .delete-button {
-    font-size: 20px; /* Increase font size */
-    padding: 10px; /* Add padding for a larger button */
-    background-color: transparent; /* Background color (transparent for icon buttons) */
-    color: red; /* Text color */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
-  }
 
-  .delete-button:hover {
-    color: darkred; /* Darker color on hover */
-  }
-</!--style>
+
 
 <!-- Modal for Designation Details -->
 <div id="designationModal" class="modal" style="display:none;">
@@ -1000,11 +969,21 @@
       <h2 class="text-lg font-bold mb-4 bg-gray-200 p-2 rounded">Designation Details</h2>
 
       <form id="designationForm">
+        
+          <label for="profilePhoto" class="block mb-1">* Profile Photo:</label>
+          <input type="file" id="profilePhoto" accept="image/*" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+          <img id="photoPreview" class="w-20 h-20 rounded-full mb-2 hidden" src="#" alt="Profile Preview" />
+          
+          <label for="name" class="block mb-1">* Name:</label>
+          <input type="text" id="name" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
+          <label for="name" class="block mb-1">* Email:</label>
+          <input type="email" id="email" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
           <label for="code" class="block mb-1">* Code:</label>
           <input type="text" id="code" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
 
-          <label for="name" class="block mb-1">* Name:</label>
-          <input type="text" id="name" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
+
 
           <label for="designation" class="block mb-1">* Designation:</label>
           <input type="text" id="designation" class="mb-2 p-2 border border-gray-300 rounded-lg w-full" required />
@@ -1023,79 +1002,132 @@
       </form>
   </div>
 </div>
+<div class="flex justify-between items-center bg-white border-t border-gray-200 p-4 fixed bottom-0 w-full">
+    <span class="text-sm font-normal text-gray-500">
+        Showing <span class="text-gray-900 font-semibold">1</span> of 
+        <span class="text-gray-900 font-semibold">2290</span>
+    </span>
+    <div class="flex items-center space-x-3">
+        <a href="#" class="text-white bg-cyan-600 hover:bg-cyan-700 px-3 py-2 rounded-lg text-sm">
+            <svg class="-ml-1 mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Previous
+        </a>
+        <a href="#" class="text-white bg-cyan-600 hover:bg-cyan-700 px-3 py-2 rounded-lg text-sm">
+            Next
+            <svg class="-mr-1 ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293 3.293a1 1 0 001.414 1.414l4-4a1 1 0 010-1.414l-4-4a1 1 0 00-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+        </a>
+    </div>
+</div>
+
 
 <script>
-  // Modal functionality
-  const modal = document.getElementById('designationModal');
-  const createButton = document.getElementById('createButton');
-  const closeModal = document.getElementById('closeModal');
-  const cancelButton = document.getElementById('cancelButton');
+    // Modal functionality
+    const modal = document.getElementById('designationModal');
+    const createButton = document.getElementById('createButton');
+    const closeModal = document.getElementById('closeModal');
+    const cancelButton = document.getElementById('cancelButton');
+    const profilePhotoInput = document.getElementById('profilePhoto');
+    const photoPreview = document.getElementById('photoPreview');
 
-  // Open modal when "Create" button is clicked
-  createButton.addEventListener('click', () => {
-      modal.style.display = 'block'; // Show modal
-  });
+    // Open modal when "Create" button is clicked
+    createButton.addEventListener('click', () => {
+        modal.style.display = 'block'; // Show modal
+    });
 
-  // Close modal when "X" button is clicked
-  closeModal.addEventListener('click', () => {
-      modal.style.display = 'none'; // Hide modal
-  });
+    // Close modal when "X" button is clicked
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none'; // Hide modal
+    });
 
-  // Close modal when "Cancel" button is clicked
-  cancelButton.addEventListener('click', () => {
-      modal.style.display = 'none'; // Hide modal
-  });
+    // Close modal when "Cancel" button is clicked
+    cancelButton.addEventListener('click', () => {
+        modal.style.display = 'none'; // Hide modal
+    });
 
-  // Handle form submission
-  document.getElementById('designationForm').addEventListener('submit', function (e) {
-      e.preventDefault(); // Prevent default form submission
+    // Preview selected profile photo
+    profilePhotoInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                photoPreview.src = e.target.result;
+                photoPreview.classList.remove('hidden'); // Show the preview
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
-      // Get form values
-      const code = document.getElementById('code').value;
-      const name = document.getElementById('name').value;
-      const designation = document.getElementById('designation').value;
-      const status = document.getElementById('status').value;
+    // Handle form submission
+    document.getElementById('designationForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
 
-      // Validate required fields
-      if (code.trim() === '' || name.trim() === '' || designation.trim() === '') {
-          alert("Please fill out all required fields.");
-          return;
-      }
-      // Determine the status dot color
-      const statusDot = status === 'Active' 
-          ? '<span class="inline-block w-3 h-3 mr-2 bg-green-500 rounded-full"></span> Active'
-          : '<span class="inline-block w-3 h-3 mr-2 bg-red-500 rounded-full"></span> Inactive';
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const code = document.getElementById('code').value;
+        const designation = document.getElementById('designation').value;
+        const status = document.getElementById('status').value;
+        const profilePhoto = document.getElementById('photoPreview').src;
 
-      // Get the table body to append new row
-      const tableBody = document.getElementById('designationTableBody');
-      const newRow = document.createElement('tr'); // Create new row
+        // Validate required fields
+        if (!name || !email || !code || !designation || !profilePhoto) {
+            alert('Please fill out all required fields and upload a profile photo.');
+            return;
+        }
 
-      // Set the inner HTML of the row with the data and the delete button
-      newRow.innerHTML = `
-          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${code}</td>
-          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${name}</td>
-          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${designation}</td>
-          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${statusDot}</td>
-          <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-            <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 delete-button">Delete</button>
-          </td>
-      `;
-    
+        // Determine the status dot color
+        const statusDot = status === 'Active' 
+            ? '<span class="inline-block w-3 h-3 mr-2 bg-green-500 rounded-full"></span> Active'
+            : '<span class="inline-block w-3 h-3 mr-2 bg-red-500 rounded-full"></span> Inactive';
 
-      // Append the new row to the table
-      tableBody.appendChild(newRow);
+        // Get the table body to append new row
+        const tableBody = document.getElementById('designationTableBody');
+        const newRow = document.createElement('tr');
 
-      // Add delete functionality to the delete button in the new row
-      newRow.querySelector('.delete-button').addEventListener('click', function () {
-          newRow.remove(); // Remove the row when the delete button is clicked
-      });
+        // Set the inner HTML of the row with the data and the delete button
+        newRow.innerHTML = `
+            <td class="p-4 text-left">
+                <img src="${profilePhoto}" alt="Profile Photo" class="w-10 h-10 rounded-full">
+            </td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${name}</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${email}</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${code}</td>
+            <td class="p-4 text-left text-xs font-medium text-gray-500 uppercase">${designation}</td>
+            <td class="p-4 text-left">${statusDot}</td>
+            <td class="p-4 flex space-x-2">
+                <button type="button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-3 py-2 editButton">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.414 2.586a2 2 0 00-2.828 0L9 8.172V11h2.828l5.586-5.586a2 2 0 000-2.828zM7 12v5a1 1 0 001 1h5a1 1 0 001-1v-3H9a2 2 0 01-2-2z"></path>
+                    </svg>
+                </button>
+                <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-200 font-medium rounded-lg text-sm px-3 py-2 deleteButton">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.5 4A1.5 1.5 0 017 2.5h6A1.5 1.5 0 0114.5 4H16a1 1 0 010 2h-1v10a2 2 0 01-2 2H7a2 2 0 01-2-2V6H4a1 1 0 110-2h1.5zM7 6v10h6V6H7z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </td>
+        `;
 
-      // Hide the modal after adding the row
-      modal.style.display = 'none'; 
+        // Append the new row to the table
+        tableBody.appendChild(newRow);
 
-      // Reset the form
-      document.getElementById('designationForm').reset();
-  });
+        // Reset form values
+        document.getElementById('designationForm').reset();
+        photoPreview.src = ''; // Clear image preview
+        photoPreview.classList.add('hidden'); // Hide image preview
+
+        // Hide the modal after submission
+        modal.style.display = 'none';
+
+        // Add event listener for deleting row
+        newRow.querySelector('.deleteButton').addEventListener('click', () => {
+            newRow.remove(); // Remove the row when delete button is clicked
+        });
+    });
 </script>
 
   </body>
